@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="intro-overlay" id="intro-overlay" aria-hidden="true">
+      <button type="button" class="intro-skip" id="intro-skip" aria-label="Skip intro sequence">Skip intro</button>
+      <img class="intro-title" id="intro-title" src="assets/shitpileCubedTitleArt.png" alt="Shitpile Cubed Productions Presents title" width="1280" height="720" />
+    </div>
+
     <header class="hero">
       <div class="hero__content">
         <p class="eyebrow">Prototype Development</p>
@@ -97,5 +102,98 @@
       <p>Gloom Routers is an independent game project currently in development.</p>
       <p>© 2026 Gloom Routers. All rights reserved.</p>
     </footer>
+
+    <script>
+      (function () {
+        const overlay = document.getElementById('intro-overlay');
+        const image = document.getElementById('intro-title');
+        const skipButton = document.getElementById('intro-skip');
+        if (!overlay || !image || !skipButton) return;
+
+        const sequence = [
+          { src: 'assets/shitpileCubedTitleArt.png', alt: 'Shitpile Cubed Productions Presents title card' },
+          { src: 'assets/25intelGroupTitleArt.png', alt: 'In association with 25 Intel Group title card' },
+          { src: 'assets/deadZoneTitleArt.png', alt: 'A Dead Zone Studios Production title card' },
+          { src: 'assets/gloomRoutersTitleArt.png', alt: 'Gloom Routers title card' }
+        ];
+
+        let rafId = 0;
+        let stopped = false;
+
+        const endIntro = function () {
+          if (stopped) return;
+          stopped = true;
+          cancelAnimationFrame(rafId);
+          overlay.classList.add('is-ending');
+          overlay.setAttribute('aria-hidden', 'true');
+          setTimeout(function () {
+            overlay.classList.add('is-hidden');
+            skipButton.removeEventListener('click', endIntro);
+            window.removeEventListener('keydown', onKeyDown);
+          }, 550);
+        };
+
+        const onKeyDown = function (event) {
+          if (event.key === 'Escape') {
+            endIntro();
+          }
+        };
+
+        const showFrame = function (index) {
+          const frame = sequence[index];
+          image.src = frame.src;
+          image.alt = frame.alt;
+        };
+
+        const playSequence = function () {
+          const frameDuration = 1800;
+          const fadeDuration = 460;
+          const start = performance.now();
+
+          const tick = function (now) {
+            if (stopped) return;
+
+            const elapsed = now - start;
+            const index = Math.min(Math.floor(elapsed / frameDuration), sequence.length - 1);
+            const frameTime = elapsed - index * frameDuration;
+
+            showFrame(index);
+
+            let opacity = 1;
+            if (frameTime < fadeDuration) {
+              opacity = frameTime / fadeDuration;
+            } else if (frameTime > frameDuration - fadeDuration) {
+              opacity = (frameDuration - frameTime) / fadeDuration;
+            }
+            image.style.opacity = String(Math.max(0, Math.min(1, opacity)));
+
+            if (elapsed >= frameDuration * sequence.length) {
+              endIntro();
+              return;
+            }
+
+            rafId = requestAnimationFrame(tick);
+          };
+
+          rafId = requestAnimationFrame(tick);
+        };
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        overlay.classList.add('is-active');
+        overlay.setAttribute('aria-hidden', 'false');
+
+        skipButton.addEventListener('click', endIntro);
+        window.addEventListener('keydown', onKeyDown);
+
+        if (reduceMotion) {
+          showFrame(sequence.length - 1);
+          image.style.opacity = '1';
+          setTimeout(endIntro, 900);
+          return;
+        }
+
+        playSequence();
+      })();
+    </script>
   </body>
 </html>

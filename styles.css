@@ -19,6 +19,63 @@ body {
   line-height: 1.55;
 }
 
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  place-items: center;
+  padding: 1.25rem;
+  background: #000;
+  opacity: 0;
+  transition: opacity 0.5s linear, visibility 0.5s linear;
+}
+
+.intro-overlay.is-active {
+  display: grid;
+  opacity: 1;
+  visibility: visible;
+}
+
+.intro-overlay.is-ending {
+  opacity: 0;
+}
+
+.intro-overlay.is-hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.intro-title {
+  width: min(95vw, 1240px);
+  max-height: 74vh;
+  object-fit: contain;
+  opacity: 0;
+  image-rendering: auto;
+}
+
+.intro-skip {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: #fff;
+  background: #111;
+  border: 1px solid #666;
+  border-radius: 0;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.intro-skip:hover,
+.intro-skip:focus-visible {
+  background: #1b1b1b;
+  border-color: #bbb;
+  outline: 2px solid #bbb;
+  outline-offset: 2px;
+}
+
 .hero {
   padding: 4rem 1.25rem 2.5rem;
   border-bottom: 1px solid var(--line);
@@ -86,4 +143,14 @@ footer {
 @media (max-width: 640px) {
   .hero { padding-top: 3rem; }
   main section { padding: 1.5rem 0; }
+  .intro-title {
+    width: min(96vw, 880px);
+    max-height: 62vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-overlay {
+    transition: none;
+  }
 }
