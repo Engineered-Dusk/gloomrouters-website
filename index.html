@@ -119,6 +119,7 @@
 
         let rafId = 0;
         let stopped = false;
+        let currentIndex = -1;
 
         const endIntro = function () {
           if (stopped) return;
@@ -140,9 +141,18 @@
         };
 
         const showFrame = function (index) {
+          if (index === currentIndex) return;
+          currentIndex = index;
           const frame = sequence[index];
           image.src = frame.src;
           image.alt = frame.alt;
+        };
+
+        const preloadSequence = function () {
+          sequence.forEach(function (frame) {
+            const preloadImage = new Image();
+            preloadImage.src = frame.src;
+          });
         };
 
         const playSequence = function () {
@@ -192,6 +202,7 @@
           return;
         }
 
+        preloadSequence();
         playSequence();
       })();
     </script>
