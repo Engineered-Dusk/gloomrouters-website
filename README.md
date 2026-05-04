@@ -9,7 +9,7 @@ This repository contains the public website for **Gloom Routers** (not the playa
 ## Files
 - `index.html`: main landing page content and section structure.
 - `styles.css`: page styling and responsive layout.
-- `assets/cards/`: selected card images for display. This v0 scaffold currently uses clearly marked placeholders until final card files are added.
+- `assets/cards/`: selected card images for display.
 - `CNAME`: custom domain for GitHub Pages (`gloomrouters.com`).
 
 ## Local preview
