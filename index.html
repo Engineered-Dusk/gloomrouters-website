@@ -117,7 +117,11 @@
           { src: 'assets/gloomRoutersTitleArt.png', alt: 'Gloom Routers title card' }
         ];
 
+        const frameDuration = 2800;
+        const fadeDuration = 460;
+
         let rafId = 0;
+        let timeoutId = 0;
         let stopped = false;
         let currentIndex = -1;
 
@@ -125,6 +129,7 @@
           if (stopped) return;
           stopped = true;
           cancelAnimationFrame(rafId);
+          clearTimeout(timeoutId);
           overlay.classList.add('is-ending');
           overlay.setAttribute('aria-hidden', 'true');
           setTimeout(function () {
@@ -156,8 +161,6 @@
         };
 
         const playSequence = function () {
-          const frameDuration = 1800;
-          const fadeDuration = 460;
           const start = performance.now();
 
           const tick = function (now) {
@@ -188,6 +191,27 @@
           rafId = requestAnimationFrame(tick);
         };
 
+        const playReducedMotionSequence = function () {
+          let index = 0;
+
+          const tick = function () {
+            if (stopped) return;
+
+            showFrame(index);
+            image.style.opacity = '1';
+
+            index += 1;
+            if (index >= sequence.length) {
+              timeoutId = setTimeout(endIntro, frameDuration);
+              return;
+            }
+
+            timeoutId = setTimeout(tick, frameDuration);
+          };
+
+          tick();
+        };
+
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         overlay.classList.add('is-active');
         overlay.setAttribute('aria-hidden', 'false');
@@ -195,14 +219,13 @@
         skipButton.addEventListener('click', endIntro);
         window.addEventListener('keydown', onKeyDown);
 
+        preloadSequence();
+
         if (reduceMotion) {
-          showFrame(sequence.length - 1);
-          image.style.opacity = '1';
-          setTimeout(endIntro, 900);
+          playReducedMotionSequence();
           return;
         }
 
-        preloadSequence();
         playSequence();
       })();
     </script>
