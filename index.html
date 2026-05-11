@@ -9,6 +9,7 @@
       content="Gloom Routers is a dark sci-fi tactical card/board game about rival expedition machines fighting over engineered light corridors in a ruined world."
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="cards/card-render.css" />
   </head>
   <body>
     <div class="intro-overlay" id="intro-overlay" aria-hidden="true">
@@ -59,36 +60,7 @@
       <section aria-labelledby="cards">
         <h2 id="cards">Card previews</h2>
         <p>Selected active in-game card examples are shown below. <a href="/cards">Browse the full rendered card decks</a>.</p>
-        <div class="card-grid">
-          <figure class="card">
-            <img src="assets/cards/goadline-provocateur.png" alt="Goadline Provocateur card" loading="lazy" width="320" height="480" />
-            <figcaption>Goadline Provocateur</figcaption>
-          </figure>
-          <figure class="card">
-            <img src="assets/cards/stormwall-phalanx.png" alt="Stormwall Phalanx card" loading="lazy" width="320" height="480" />
-            <figcaption>Stormwall Phalanx</figcaption>
-          </figure>
-          <figure class="card">
-            <img src="assets/cards/ashwake-acolyte.png" alt="Ashwake Acolyte card" loading="lazy" width="320" height="480" />
-            <figcaption>Ashwake Acolyte</figcaption>
-          </figure>
-          <figure class="card">
-            <img src="assets/cards/brightwater-lancer.png" alt="Brightwater Lancer card" loading="lazy" width="320" height="480" />
-            <figcaption>Brightwater Lancer</figcaption>
-          </figure>
-          <figure class="card">
-            <img src="assets/cards/node-placeholder.png" alt="Node placeholder card type" loading="lazy" width="320" height="480" />
-            <figcaption>Node placeholder</figcaption>
-          </figure>
-          <figure class="card">
-            <img src="assets/cards/directive-placeholder.png" alt="Directive placeholder card type" loading="lazy" width="320" height="480" />
-            <figcaption>Directive placeholder</figcaption>
-          </figure>
-          <figure class="card">
-            <img src="assets/cards/module-placeholder.png" alt="Module placeholder card type" loading="lazy" width="320" height="480" />
-            <figcaption>Module placeholder</figcaption>
-          </figure>
-        </div>
+        <div class="card-showcase" id="homepage-card-showcase" aria-label="Selected rendered Gloom Routers cards"></div>
       </section>
 
       <section aria-labelledby="follow">
@@ -103,6 +75,7 @@
       <p>© 2026 Gloom Routers. All rights reserved.</p>
     </footer>
 
+    <script src="cards/cards.js" defer></script>
     <script>
       (function () {
         const overlay = document.getElementById('intro-overlay');

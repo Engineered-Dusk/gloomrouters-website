@@ -105,34 +105,20 @@ main section {
 h2 { margin-top: 0; font-size: 1.45rem; }
 p { max-width: 70ch; color: var(--text); }
 
-.card-grid {
+.card-showcase {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: clamp(0.75rem, 1.8vw, 1.25rem);
   margin-top: 1.25rem;
 }
 
-.card {
-  background: linear-gradient(160deg, #1a1f2b, #121722);
-  border: 1px solid var(--line);
-  border-radius: 0.65rem;
-  padding: 0.75rem;
-  margin: 0;
+.card-showcase__item {
+  min-width: 0;
 }
 
-.card img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 0.35rem;
-  border: 1px solid #46506a;
-  background: #0c1119;
-}
-
-figcaption {
-  margin-top: 0.55rem;
-  font-size: 0.92rem;
-  color: var(--muted);
+.card-showcase .rendered-card {
+  border: 1px solid rgba(111, 127, 160, 0.65);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.42);
 }
 
 footer {

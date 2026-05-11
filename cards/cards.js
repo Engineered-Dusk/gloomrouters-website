@@ -186,6 +186,7 @@
   }
   function renderPage() {
     const root = document.getElementById('card-browser');
+    if (!root) return;
     const fragment = document.createDocumentFragment();
     FACTIONS.forEach(faction => {
       const deckCards = expandedDeck(faction);
@@ -205,6 +206,33 @@
     });
     root.replaceChildren(fragment);
   }
+  function renderHomepageShowcase() {
+    const root = document.getElementById('homepage-card-showcase');
+    if (!root) return;
+
+    const featuredCards = [
+      ['echo_breacher', 'aurora'],
+      ['stormwall_phalanx', 'aurora'],
+      ['survey_relay', 'aurora'],
+      ['prism_calibrator', 'aurora'],
+      ['vintage_lunchbox_project_10010', 'aurora'],
+      ['iron_decree_harbinger', 'nova'],
+      ['ashwake_scavenger', 'vesper'],
+      ['whisper_net_skimmer', 'vesper'],
+      ['gilded_decoy', 'vesper']
+    ];
+
+    const fragment = document.createDocumentFragment();
+    featuredCards.forEach(([id, faction]) => {
+      const card = CARDS[id];
+      if (!card) return;
+      const item = el('div', 'card-showcase__item');
+      item.append(renderCard(card, faction));
+      fragment.append(item);
+    });
+    root.replaceChildren(fragment);
+  }
+
   function cloneRenderedCard(tile) {
     const card = tile.querySelector('.rendered-card');
     return card ? card.cloneNode(true) : null;
@@ -212,8 +240,10 @@
   function setupInteraction() {
     const preview = document.getElementById('hover-preview');
     const modal = document.getElementById('card-modal');
+    if (!preview || !modal) return;
     const modalContent = modal.querySelector('.card-modal__content');
     const close = modal.querySelector('.card-modal__close');
+    if (!modalContent || !close) return;
     const finePointer = matchMedia('(pointer: fine)').matches;
     document.addEventListener('mouseover', event => {
       if (!finePointer) return;
@@ -267,6 +297,7 @@
   }
 
   renderPage();
+  renderHomepageShowcase();
   setupInteraction();
   validate();
 })();
