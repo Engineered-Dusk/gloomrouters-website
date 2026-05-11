@@ -140,3 +140,191 @@ footer {
     transition: none;
   }
 }
+
+.section-kicker {
+  color: var(--amber);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+}
+
+.section-intro {
+  color: var(--text);
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  margin-bottom: 1.5rem;
+}
+
+.game-overview {
+  --overview-card: rgba(21, 26, 34, 0.78);
+}
+
+.overview-steps {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 1.25rem;
+}
+
+.overview-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid rgba(75, 199, 217, 0.18);
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(75, 199, 217, 0.08), transparent 54%), var(--overview-card);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+}
+
+.overview-step--wide {
+  grid-column: 1 / -1;
+}
+
+.overview-step__number {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(245, 166, 35, 0.45);
+  border-radius: 999px;
+  color: var(--amber);
+  font-weight: 800;
+  line-height: 1;
+  background: rgba(245, 166, 35, 0.08);
+}
+
+.overview-step__body {
+  min-width: 0;
+}
+
+.overview-step h3,
+.icon-glossary h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.overview-step h3 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.overview-step p {
+  margin: 0;
+  max-width: none;
+  color: var(--text);
+}
+
+.overview-step p + p,
+.overview-step .engagement-list + p {
+  margin-top: 0.75rem;
+}
+
+.rule-icon {
+  display: inline-block;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+  vertical-align: -0.28em;
+  filter: drop-shadow(0 0 8px rgba(75, 199, 217, 0.22));
+}
+
+.icon-label,
+.paired-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  min-width: 0;
+  white-space: normal;
+}
+
+.paired-icons {
+  gap: 0.1rem;
+}
+
+.engagement-list {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0.65rem 0 0;
+  padding-left: 1.15rem;
+  color: var(--text);
+}
+
+.engagement-list li::marker {
+  color: var(--cyan);
+}
+
+.icon-glossary {
+  margin-top: 1.2rem;
+  padding: 1rem;
+  border: 1px solid rgba(245, 166, 35, 0.2);
+  border-radius: 16px;
+  background: rgba(13, 16, 22, 0.42);
+}
+
+.glossary-grid {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.glossary-item {
+  display: grid;
+  grid-template-columns: auto minmax(7rem, 0.42fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+  min-width: 0;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid rgba(157, 168, 188, 0.14);
+  border-radius: 12px;
+  background: rgba(21, 26, 34, 0.62);
+}
+
+.glossary-item strong,
+.glossary-item span {
+  min-width: 0;
+}
+
+.glossary-item span:not(.paired-icons) {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 760px) {
+  .overview-steps,
+  .glossary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .glossary-item {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .glossary-item span:not(.paired-icons) {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 420px) {
+  .overview-step,
+  .icon-glossary {
+    padding: 0.85rem;
+    border-radius: 14px;
+  }
+
+  .overview-step {
+    gap: 0.65rem;
+  }
+
+  .overview-step__number {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.9rem;
+  }
+}
