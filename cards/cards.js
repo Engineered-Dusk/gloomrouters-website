@@ -121,14 +121,31 @@
     return img;
   }
   function renderRules(parent, rows) {
+    let hasSeenIconRow = false;
+
     rows.forEach(row => {
-      const p = el('p', row.icon ? 'rule-row rule-row--icon' : 'rule-row');
-      if (row.icon) appendImg(p, '', iconSrc(row.icon), '');
+      const hasIcon = Boolean(row.icon);
+      const rowClass = hasIcon
+        ? 'rule-row rule-row--icon'
+        : hasSeenIconRow
+          ? 'rule-row rule-row--continuation'
+          : 'rule-row rule-row--plain';
+
+      const p = el('p', rowClass);
+
+      if (hasIcon) {
+        appendImg(p, '', iconSrc(row.icon), '');
+        hasSeenIconRow = true;
+      }
+
       const span = el('span', '');
       if (row.label) {
         const strong = el('strong', '', { text: `${row.label}: ` });
         span.append(strong, document.createTextNode(row.text));
-      } else span.textContent = row.text;
+      } else {
+        span.textContent = row.text;
+      }
+
       p.append(span);
       parent.append(p);
     });

@@ -46,10 +46,41 @@
 .card-rules.fit-medium { font-size: 2.65cqw; }
 .card-rules.fit-long { font-size: 2.35cqw; }
 .card-rules.fit-extra-long { font-size: 2.08cqw; }
-.rendered-card .rule-row { display: grid; grid-template-columns: 2.85em 1fr; align-items: start; column-gap: 0.65em; min-width: 0; max-width: none; margin: 0; color: inherit; }
-.rule-row img { width: 2.85em; height: 2.85em; object-fit: contain; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.82)); }
-.rule-row span { min-width: 0; overflow-wrap: anywhere; }
-.rule-row strong { color: #fff0c7; font-weight: 900; }
+.rendered-card .rule-row {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  color: inherit;
+}
+.rendered-card .rule-row--icon {
+  display: grid;
+  grid-template-columns: 2.85em minmax(0, 1fr);
+  align-items: start;
+  column-gap: 0.65em;
+}
+.rendered-card .rule-row--continuation {
+  display: block;
+  padding-left: calc(2.85em + 0.65em);
+}
+.rendered-card .rule-row--plain {
+  display: block;
+  padding-left: 0;
+}
+.rendered-card .rule-row img {
+  width: 2.85em;
+  height: 2.85em;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.82));
+}
+.rendered-card .rule-row span {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.rendered-card .rule-row strong {
+  color: #fff0c7;
+  font-weight: 900;
+}
 .rendered-card--landscape .card-art-window { left: 5.71%; top: 6.07%; width: 88.5%; height: 51.5%; border-radius: 3%; }
 .rendered-card--landscape .card-frame { content: none; }
 .route-stat { z-index: 50; display: grid; place-items: center; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.82)); }
