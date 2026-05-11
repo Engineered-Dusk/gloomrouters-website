@@ -66,15 +66,54 @@
     gloam_override: { name: 'Gloam Override', type: 'directive', rarity: 'vesper', cost: 0, flavorText: 'The unforeseen force of invisible light.', rulesText: 'Attack: Choose an opposing SI Mech.\nIf you win this Relic engagement by 4 or more EV, take control of the chosen Mech.' },
     prism_revector: { name: 'Prism Revector', type: 'directive', rarity: 'neutral', cost: 0, flavorText: 'Even a Mech can find beauty in its majesty.', rulesText: 'Attack or Defense: Choose 1 committed friendly Rare Mech.\nReady it.' },
     emergency_requisition: { name: 'Emergency Requisition', type: 'directive', rarity: 'neutral', cost: 0, flavorText: 'The Spectres call it logistics when it works.', rulesText: 'Deployment: Lose 1 Relic.\nReveal a random Mech, Node, and Module from your deck, add them to your hand, then shuffle.' },
+    counterfeit_core: { name: 'Counterfeit Core', type: 'directive', rarity: 'neutral', cost: 0, flavorText: 'Desperate times call for desperate measures.', rulesText: 'Deployment: Play this card from your hand to gain 1 Core.' },
     holographic_hallucinations: { name: 'Holographic Hallucinations', type: 'directive', rarity: 'vesper', cost: 0, flavorText: 'It was right here...', rulesText: "Attack: Choose an opposing Mech with EV 2 or lower.\nReturn it to its owner's hand." },
-    black_market_bots: { name: 'Black Market Bots', type: 'directive', rarity: 'vesper', cost: 0, flavorText: 'Save your fair trades for the Twilights.', rulesText: 'Deployment: To play this Directive, lose 1 Relic.\nGenerate 2 Salvage Broker Bot cards in your hand.' }
+    black_market_bots: { name: 'Black Market Bots', type: 'directive', rarity: 'vesper', cost: 0, flavorText: 'Save your fair trades for the Twilights.', rulesText: 'Deployment: To play this Directive, lose 1 Relic.\nGenerate 2 Salvage Broker Bot cards in your hand.' },
+    lean_corridor: { name: 'Lean Corridor', type: 'route', rarity: 'route', rulesText: '' },
+    priority_dispatch: { name: 'Priority Dispatch', type: 'route', rarity: 'route', rulesText: '' },
+    prism_sweep: { name: 'Prism Sweep', type: 'route', rarity: 'route', rulesText: '' },
+    quiet_transit: { name: 'Quiet Transit', type: 'route', rarity: 'route', rulesText: '' },
+    relay_survey: { name: 'Relay Survey', type: 'route', rarity: 'route', rulesText: '' },
+    signal_purge: { name: 'Signal Purge', type: 'route', rarity: 'route', rulesText: '' },
+    buried_corridor: { name: 'Buried Corridor', type: 'route', rarity: 'route', rulesText: '' },
+    rationed_light: { name: 'Rationed Light', type: 'route', rarity: 'route', rulesText: '' },
+    relay_blowback: { name: 'Relay Blowback', type: 'route', rarity: 'route', rulesText: '' },
+    thin_stores: { name: 'Thin Stores', type: 'route', rarity: 'route', rulesText: '' },
+    total_blackout: { name: 'Total Blackout', type: 'route', rarity: 'route', rulesText: '' },
+    command_audit: { name: 'Command Audit', type: 'route', rarity: 'route', rulesText: '' },
+    controlled_burn: { name: 'Controlled Burn', type: 'route', rarity: 'route', rulesText: '' },
+    relay_collapse: { name: 'Relay Collapse', type: 'route', rarity: 'route', rulesText: '' },
+    crystal_clear_corridors: { name: 'Crystal Clear Corridors', type: 'pathing', rarity: 'pathing', rulesText: '' },
+    ghostlight_spill: { name: 'Ghostlight Spill', type: 'pathing', rarity: 'pathing', rulesText: '' },
+    heliostat_drift: { name: 'Heliostat Drift', type: 'pathing', rarity: 'pathing', rulesText: '' },
+    malfunctioning_splitter_node: { name: 'Malfunctioning Splitter Node', type: 'pathing', rarity: 'pathing', rulesText: '' },
+    occluded_corridor: { name: 'Occluded Corridor', type: 'pathing', rarity: 'pathing', rulesText: '' },
+    prism_scatter: { name: 'Prism Scatter', type: 'pathing', rarity: 'pathing', rulesText: '' },
+    scrapyard_windfall: { name: 'Scrapyard Windfall', type: 'pathing', rarity: 'pathing', rulesText: '' },
+    solar_flare: { name: 'Solar Flare', type: 'pathing', rarity: 'pathing', rulesText: '' },
+    stabilized_relay_prism: { name: 'Stabilized Relay Prism', type: 'pathing', rarity: 'pathing', rulesText: '' }
   };
 
   const DECKS = {
-    aurora: { name: 'Aurora', mainDeck: [['compliance_interdictor',1],['echo_breacher',2],['glimmermerk_lancer',1],['heliostride_colossus',1],['ironhand_bulwark',1],['ruinlight_grappler',1],['stormwall_phalanx',1],['core_runner',2],['lastlight_warden',2],['lightspill_spotter',2],['rare_parts_broker',1],['vintage_lunchbox_project_10010',1],['recovery_lens',1],['corridor_splitter',1],['anchored_prism',1],['reserve_relay',1],['scrapline_lens',1],['survey_relay',1],['emergency_requisition',1],['hardlight_muster',1],['node_annexation',1],['prism_lockdown',1],['prism_revector',1],['prism_calibrator',1],['vector_harness',1],['salvage_plating',1]] },
-    vesper: { name: 'Vesper', mainDeck: [['compliance_interdictor',1],['echo_breacher',1],['glasscore_launderer',1],['ironhand_bulwark',1],['mute_guillotine',1],['null_signal_anchor',1],['stormwall_phalanx',1],['whisper_net_skimmer',1],['ashwake_scavenger',1],['gilded_decoy',1],['gloamveil_snare',2],['static_clamp',2],['lowband_siren',1],['vintage_lunchbox_project_10010',1],['gloam_lens',1],['gloam_tithe_node',1],['shade_siphon_splitter',1],['reserve_relay',1],['scrapline_lens',1],['survey_relay',1],['emergency_requisition',1],['black_market_bots',1],['gloam_override',1],['holographic_hallucinations',1],['prism_revector',1],['null_mantle',1],['vector_harness',1],['signal_scope',1]] },
-    nova: { name: 'Nova', mainDeck: [['blackcore_hauler',1],['compliance_interdictor',1],['echo_breacher',1],['iron_decree_harbinger',1],['ironhand_bulwark',2],['dreadwake_breacher',1],['stormwall_phalanx',1],['bullhelm_charger',2],['circuit_scrubber',2],['core_runner',1],['rare_parts_broker',1],['scrapwake_dropframe',2],['breach_lens',1],['command_prism',1],['shatter_splitter',1],['reserve_relay',1],['scrapline_lens',1],['survey_relay',1],['breach_reckoning',1],['emergency_requisition',1],['nova_signal_trace',1],['predatory_geometry',1],['prism_revector',1],['impact_calibrator',1],['salvage_plating',1],['signal_scope',1]] }
+    aurora: {
+      name: 'Aurora',
+      mainDeck: [['compliance_interdictor',1],['echo_breacher',2],['glimmermerk_lancer',1],['heliostride_colossus',1],['ironhand_bulwark',1],['ruinlight_grappler',1],['stormwall_phalanx',1],['core_runner',2],['lastlight_warden',2],['lightspill_spotter',2],['rare_parts_broker',1],['vintage_lunchbox_project_10010',1],['recovery_lens',1],['corridor_splitter',1],['anchored_prism',1],['reserve_relay',1],['scrapline_lens',1],['survey_relay',1],['emergency_requisition',1],['hardlight_muster',1],['node_annexation',1],['prism_lockdown',1],['prism_revector',1],['prism_calibrator',1],['vector_harness',1],['salvage_plating',1]],
+      routeDeck: ['lean_corridor','priority_dispatch','prism_sweep','quiet_transit','relay_survey','signal_purge']
+    },
+    vesper: {
+      name: 'Vesper',
+      mainDeck: [['compliance_interdictor',1],['echo_breacher',1],['glasscore_launderer',1],['ironhand_bulwark',1],['mute_guillotine',1],['null_signal_anchor',1],['stormwall_phalanx',1],['whisper_net_skimmer',1],['ashwake_scavenger',1],['gilded_decoy',1],['gloamveil_snare',2],['static_clamp',2],['lowband_siren',1],['vintage_lunchbox_project_10010',1],['gloam_lens',1],['gloam_tithe_node',1],['shade_siphon_splitter',1],['reserve_relay',1],['scrapline_lens',1],['survey_relay',1],['emergency_requisition',1],['black_market_bots',1],['gloam_override',1],['holographic_hallucinations',1],['prism_revector',1],['null_mantle',1],['vector_harness',1],['signal_scope',1]],
+      routeDeck: ['buried_corridor','quiet_transit','rationed_light','relay_blowback','thin_stores','total_blackout']
+    },
+    nova: {
+      name: 'Nova',
+      mainDeck: [['blackcore_hauler',1],['compliance_interdictor',1],['echo_breacher',1],['iron_decree_harbinger',1],['ironhand_bulwark',2],['dreadwake_breacher',1],['stormwall_phalanx',1],['bullhelm_charger',2],['circuit_scrubber',2],['core_runner',1],['rare_parts_broker',1],['scrapwake_dropframe',2],['breach_lens',1],['command_prism',1],['shatter_splitter',1],['reserve_relay',1],['scrapline_lens',1],['survey_relay',1],['breach_reckoning',1],['emergency_requisition',1],['nova_signal_trace',1],['predatory_geometry',1],['prism_revector',1],['impact_calibrator',1],['salvage_plating',1],['signal_scope',1]],
+      routeDeck: ['command_audit','controlled_burn','priority_dispatch','relay_collapse','relay_survey','signal_purge']
+    }
   };
+
+  const PATHING_CARDS = ['crystal_clear_corridors','ghostlight_spill','heliostat_drift','malfunctioning_splitter_node','occluded_corridor','prism_scatter','scrapyard_windfall','solar_flare','stabilized_relay_prism'];
+  const GENERATED_CARDS = ['counterfeit_core','hardlight_bastion','hardlight_scout','salvage_broker_bot'];
 
   Object.entries(CARDS).forEach(([id, card]) => { card.id = id; });
 
@@ -160,12 +199,15 @@
     appendImg(root, 'card-frame', frameSrc(faction, card), '');
 
     if (landscape) {
-      [['cores', 'core'], ['draw', 'draw'], ['magnitude', 'magnitude']].forEach(([slot, icon]) => {
-        const stat = el('div', `route-stat route-stat--${slot}`);
-        appendImg(stat, '', iconSrc(icon), '');
-        stat.append(el('strong', '', { text: card[`route${slot[0].toUpperCase()}${slot.slice(1)}`] ?? 0 }));
-        root.append(stat);
-      });
+      if (card.type === 'route') {
+        [['cores', 'core'], ['draw', 'draw'], ['magnitude', 'magnitude']].forEach(([slot, icon]) => {
+          const stat = el('div', `route-stat route-stat--${slot}`);
+          const value = card[`route${slot[0].toUpperCase()}${slot.slice(1)}`];
+          appendImg(stat, '', iconSrc(icon), '');
+          if (value !== undefined && value !== null) stat.append(el('strong', '', { text: value }));
+          root.append(stat);
+        });
+      }
       root.append(el('div', `landscape-name ${fitClass(card.name)}`, { text: card.name }));
       const text = el('div', `landscape-text ${rulesFitClass(card)}`);
       if (card.flavorText) text.append(el('div', 'landscape-flavor', { text: card.flavorText }));
@@ -201,26 +243,57 @@
   function expandedDeck(faction) {
     return DECKS[faction].mainDeck.flatMap(([id, count]) => Array.from({ length: count }, (_, copyIndex) => ({ id, copyIndex, card: CARDS[id] })));
   }
+  function routeDeck(faction) {
+    return DECKS[faction].routeDeck.map((id, copyIndex) => ({ id, copyIndex, card: CARDS[id] }));
+  }
+  function cardCollection(ids) {
+    return ids.map((id, copyIndex) => ({ id, copyIndex, card: CARDS[id] }));
+  }
+  function renderCardGrid(entries, faction, label) {
+    const grid = el('div', 'card-grid');
+    entries.forEach(({ id, copyIndex, card }) => {
+      if (!card) return;
+      const button = el('button', 'card-tile', { type: 'button', 'data-card-id': id, 'data-faction': faction, 'aria-label': `${label} ${card.name} copy ${copyIndex + 1}` });
+      button.append(renderCard(card, faction));
+      grid.append(button);
+    });
+    return grid;
+  }
   function renderPage() {
     const root = document.getElementById('card-browser');
     if (!root) return;
     const fragment = document.createDocumentFragment();
     FACTIONS.forEach(faction => {
       const deckCards = expandedDeck(faction);
-      const section = el('section', 'deck-section', { 'data-faction': faction, 'aria-labelledby': `${faction}-heading` });
+      const routes = routeDeck(faction);
+      const section = el('section', 'deck-section', { id: `${faction}-deck`, 'data-faction': faction, 'aria-labelledby': `${faction}-heading` });
       const heading = el('div', 'deck-heading');
-      heading.append(el('h2', '', { id: `${faction}-heading`, text: DECKS[faction].name }));
+      heading.append(el('h2', '', { id: `${faction}-heading`, text: `${DECKS[faction].name} Play Deck` }));
       heading.append(el('div', 'deck-count', { text: `${deckCards.length} main-deck cards` }));
       section.append(heading);
-      const grid = el('div', 'card-grid');
-      deckCards.forEach(({ id, copyIndex, card }) => {
-        const button = el('button', 'card-tile', { type: 'button', 'data-card-id': id, 'data-faction': faction, 'aria-label': `${DECKS[faction].name} ${card.name} copy ${copyIndex + 1}` });
-        button.append(renderCard(card, faction));
-        grid.append(button);
-      });
-      section.append(grid);
+      section.append(renderCardGrid(deckCards, faction, `${DECKS[faction].name} play deck`));
+      const routeHeading = el('div', 'deck-subheading');
+      routeHeading.append(el('h3', '', { text: `${DECKS[faction].name} Route Deck` }));
+      routeHeading.append(el('div', 'deck-count', { text: `${routes.length} route cards` }));
+      section.append(routeHeading);
+      section.append(renderCardGrid(routes, faction, `${DECKS[faction].name} route deck`));
       fragment.append(section);
     });
+
+    const generated = el('section', 'deck-section', { id: 'generated-cards', 'data-faction': 'nova', 'aria-labelledby': 'generated-cards-heading' });
+    const generatedHeading = el('div', 'deck-heading');
+    generatedHeading.append(el('h2', '', { id: 'generated-cards-heading', text: 'Generated Cards' }));
+    generatedHeading.append(el('div', 'deck-count', { text: `${GENERATED_CARDS.length} generated cards` }));
+    generated.append(generatedHeading, renderCardGrid(cardCollection(GENERATED_CARDS), 'nova', 'Generated cards'));
+    fragment.append(generated);
+
+    const pathing = el('section', 'deck-section', { id: 'pathing', 'data-faction': 'aurora', 'aria-labelledby': 'pathing-heading' });
+    const pathingHeading = el('div', 'deck-heading');
+    pathingHeading.append(el('h2', '', { id: 'pathing-heading', text: 'Pathing' }));
+    pathingHeading.append(el('div', 'deck-count', { text: `${PATHING_CARDS.length} pathing cards` }));
+    pathing.append(pathingHeading, renderCardGrid(cardCollection(PATHING_CARDS), 'aurora', 'Pathing'));
+    fragment.append(pathing);
+
     root.replaceChildren(fragment);
   }
   function renderHomepageShowcase() {
@@ -307,10 +380,19 @@
     document.addEventListener('keydown', event => { if (event.key === 'Escape' && !modal.hidden) closeModal(); });
   }
   function validate() {
-    const counts = Object.fromEntries(FACTIONS.map(f => [DECKS[f].name, expandedDeck(f).length]));
-    const total = Object.values(counts).reduce((sum, count) => sum + count, 0);
-    const missingDefs = FACTIONS.flatMap(f => expandedDeck(f).filter(entry => !entry.card).map(entry => entry.id));
-    console.info('Gloom Routers card browser validation', { counts, total, missingDefs });
+    const mainDeckCounts = Object.fromEntries(FACTIONS.map(f => [DECKS[f].name, expandedDeck(f).length]));
+    const routeDeckCounts = Object.fromEntries(FACTIONS.map(f => [DECKS[f].name, routeDeck(f).length]));
+    const total = Object.values(mainDeckCounts).reduce((sum, count) => sum + count, 0)
+      + Object.values(routeDeckCounts).reduce((sum, count) => sum + count, 0)
+      + GENERATED_CARDS.length
+      + PATHING_CARDS.length;
+    const allEntries = [
+      ...FACTIONS.flatMap(f => [...expandedDeck(f), ...routeDeck(f)]),
+      ...cardCollection(GENERATED_CARDS),
+      ...cardCollection(PATHING_CARDS)
+    ];
+    const missingDefs = allEntries.filter(entry => !entry.card).map(entry => entry.id);
+    console.info('Gloom Routers card browser validation', { mainDeckCounts, routeDeckCounts, generated: GENERATED_CARDS.length, pathing: PATHING_CARDS.length, total, missingDefs });
   }
 
   renderPage();
