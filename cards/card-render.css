@@ -91,4 +91,8 @@
 .route-stat--magnitude { left: 29.25%; top: 58.6%; width: 10.88%; height: 14.95%; }
 .landscape-name { left: 45.71%; top: 63.27%; width: 44.42%; height: 6.26%; display: flex; align-items: center; justify-content: center; font-family: "Bahnschrift Condensed", "Arial Narrow", Impact, sans-serif; font-size: 3.4cqw; font-weight: 900; text-transform: uppercase; white-space: nowrap; }
 .landscape-text { left: 6.73%; top: 75.7%; width: 86.39%; height: 16.73%; display: flex; flex-direction: column; justify-content: center; gap: 0.35em; font-family: Georgia, "Times New Roman", serif; font-size: 3.4cqw; font-weight: 700; line-height: 1.1; }
+.landscape-text.fit-medium { font-size: 3.05cqw; gap: 0.24em; line-height: 1.05; }
+.landscape-text.fit-long { font-size: 2.65cqw; gap: 0.16em; line-height: 1.02; }
+.landscape-text.fit-extra-long { font-size: 2.35cqw; gap: 0.08em; line-height: 1; }
+.rendered-card--pathing .landscape-text { top: 73.6%; height: 19.85%; }
 .landscape-flavor { color: #ead8ad; font-style: italic; text-align: center; }
