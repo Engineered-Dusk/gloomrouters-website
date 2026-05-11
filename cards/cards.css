@@ -125,14 +125,14 @@ h1 { margin: 0; font-size: clamp(2.1rem, 5vw, 5rem); line-height: 0.95; }
 .card-icon--cost { left: 80.47%; top: 84.94%; width: 16.42%; height: 11.73%; }
 .card-icon--type::before { background: radial-gradient(circle at 45% 38%, #182521 0%, #0a120d 62%, #050705 100%); }
 .card-name, .landscape-name, .card-flavor, .card-rules, .landscape-text { z-index: 60; overflow: hidden; text-shadow: 0 1px 2px #000, 0 0 4px rgba(244,211,137,0.35); }
-.card-name { left: 32.26%; top: 6.87%; width: 51.13%; height: 5.66%; display: flex; align-items: center; justify-content: center; color: #f1dfbd; font-family: "Bahnschrift Condensed", "Arial Narrow", Impact, sans-serif; font-size: 4.8cqw; font-weight: 900; line-height: 0.88; text-align: center; text-transform: uppercase; white-space: nowrap; }
-.rendered-card--support .card-name { width: 59.81%; font-size: 5.4cqw; }
-.card-name.fit-medium { font-size: 4.4cqw; }
-.card-name.fit-long { font-size: 3.95cqw; }
-.card-name.fit-extra-long { font-size: 3.45cqw; }
-.rendered-card--support .card-name.fit-medium { font-size: 4.95cqw; }
-.rendered-card--support .card-name.fit-long { font-size: 4.4cqw; }
-.rendered-card--support .card-name.fit-extra-long { font-size: 3.9cqw; }
+.card-name { left: 32.26%; top: 6.87%; width: 51.13%; height: 5.66%; display: flex; align-items: center; justify-content: center; color: #f1dfbd; font-family: "Bahnschrift Condensed", "Arial Narrow", Impact, sans-serif; font-size: 4.6cqw; font-weight: 900; line-height: 1.02; text-align: center; text-transform: uppercase; white-space: nowrap; letter-spacing: -0.02em; }
+.rendered-card--support .card-name { width: 59.81%; font-size: 5cqw; }
+.card-name.fit-medium { font-size: 4.05cqw; }
+.card-name.fit-long { font-size: 3.65cqw; }
+.card-name.fit-extra-long { font-size: 3.2cqw; }
+.rendered-card--support .card-name.fit-medium { font-size: 4.35cqw; }
+.rendered-card--support .card-name.fit-long { font-size: 3.85cqw; }
+.rendered-card--support .card-name.fit-extra-long { font-size: 3.35cqw; }
 .card-rarity { z-index: 61; left: 85.66%; top: 7.41%; width: 6.04%; height: 4.31%; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.72)); }
 .card-rarity img { width: 100%; height: 100%; object-fit: contain; }
 .card-flavor { left: 13.77%; top: 68.73%; width: 77.08%; height: 6.27%; display: flex; align-items: center; justify-content: center; color: #ead8ad; font-family: Georgia, "Times New Roman", serif; font-size: 2.85cqw; font-style: italic; font-weight: 650; line-height: 1.08; text-align: center; white-space: pre-line; }

@@ -85,9 +85,9 @@
   function backgroundFor(faction) { return asset(`backgrounds/${faction === 'vesper' ? 'gloom' : faction === 'nova' ? 'neutral' : 'corridor'}-pixel.png`); }
   function fitClass(text, prefix = '') {
     const len = (text || '').replace(/[^A-Za-z0-9]/g, '').length;
-    if (len >= 25) return `${prefix}fit-extra-long`;
-    if (len >= 20) return `${prefix}fit-long`;
-    if (len >= 17) return `${prefix}fit-medium`;
+    if (len >= 22) return `${prefix}fit-extra-long`;
+    if (len >= 17) return `${prefix}fit-long`;
+    if (len >= 13) return `${prefix}fit-medium`;
     return '';
   }
   function rulesFitClass(card) {
