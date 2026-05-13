@@ -13,7 +13,9 @@
   </head>
   <body>
     <div class="intro-overlay" id="intro-overlay" aria-hidden="true">
+      <div class="intro-starfield" aria-hidden="true"></div>
       <button type="button" class="intro-skip" id="intro-skip" aria-label="Skip intro sequence">Skip intro</button>
+      <div class="intro-lore" id="intro-lore" aria-live="polite"></div>
       <img class="intro-title" id="intro-title" src="assets/shitpileCubedTitleArt.png" alt="Shitpile Cubed Productions Presents title" width="1280" height="720" />
     </div>
 
@@ -29,6 +31,7 @@
         </p>
         <p class="hero__actions">
           <a class="hero__button" href="/play/">Play vs Bot</a>
+          <button type="button" class="hero__button hero__button--secondary" id="intro-replay">Replay Intro</button>
         </p>
       </div>
     </header>
@@ -217,82 +220,157 @@
     <script>
       (function () {
         const overlay = document.getElementById('intro-overlay');
+        const lore = document.getElementById('intro-lore');
         const image = document.getElementById('intro-title');
         const skipButton = document.getElementById('intro-skip');
-        if (!overlay || !image || !skipButton) return;
+        const replayButton = document.getElementById('intro-replay');
+        if (!overlay || !lore || !image || !skipButton) return;
 
-        const sequence = [
+        const introSeenKey = 'gloomRoutersIntroSeen';
+        const loreSequence = [
+          { html: 'The Earth’s wounds never healed.<br>The harmony that once allowed life had fragmented.' },
+          { html: 'First came the heat of day.<br>Blistering. Uninhabitable.<br>Then came the cold of night.<br>Rigid. Insurmountable.' },
+          { html: 'So humanity harnessed the sun.<br>A desperate final attempt at survival.' },
+          { html: 'They called it the <strong><em>Aegis Array</em></strong>:<br>an astronomical structure orbiting the Earth,<br>composed of countless <strong><em>Heliostats</em></strong>,<br>intricate mirrored panes built to command the light of the sun.' },
+          { html: 'It starved the day.<br>And fed the night.' },
+          { html: 'The sun, as it was, would never be seen again.' },
+          { html: 'The Array gathered humanity into the <strong><em>Twilights</em></strong>:<br>bleak habitations of engineered light.<br>Small, overpopulated, carefully selected cities,<br>meticulously engineered,<br>meticulously controlled.' },
+          { html: 'The last stand of humanity.<br><br>Outside the Twilights, the old world remained.' },
+          { html: 'They called it the <strong><em>Gloom</em></strong>.' },
+          { html: 'A world left to blister and freeze.<br>But the Gloom still held what could not be replaced.<br><strong><em>Relics</em></strong> of the past:<br>machinery,<br>medicine,<br>memory.' },
+          { html: 'That made light the first principle of power.<br>And all power converged on the Array.<br>From that power, the <strong><em>Spectres</em></strong> emerged:<br>crews that lived between the Twilights and the Gloom.<br>They brokered light.<br>And hunted what humanity could no longer build.<br>The chance of survival was low.<br>But the bounties on Relics were high.<br>Many died in the Gloom.' },
+          { html: 'So the Spectres answered with <strong>Heliometric Routing Nodes</strong>:<br>a field network of prisms, splitters, and lenses.<br>They siphoned light from the Array<br>and cast temporary routes into the dark,<br>through the broken corridors of abandoned cities.' },
+          { html: 'But the Spectres no longer place the Nodes themselves.' },
+          { html: 'They send machines ahead of them.<br>Specialized Mechs,<br>built to enter the Gloom,<br>place the Nodes,<br>and shape light and shadow.' },
+          { html: 'Born of necessity.<br>Forged from the failures of the dead.<br>Paid for in the blood of fallen Spectres.' },
+          { html: 'The <strong>Gloom Routers</strong>.' }
+        ];
+        const titleSequence = [
           { src: 'assets/shitpileCubedTitleArt.png', alt: 'Shitpile Cubed Productions Presents title card' },
           { src: 'assets/25intelGroupTitleArt.png', alt: 'In association with 25 Intel Group title card' },
           { src: 'assets/deadZoneTitleArt.png', alt: 'A Dead Zone Studios Production title card' },
           { src: 'assets/gloomRoutersTitleArt.png', alt: 'Gloom Routers title card' }
         ];
 
-        const frameDuration = 2800;
+        const loreFrameDuration = 2100;
+        const titleFrameDuration = 2800;
         const fadeDuration = 460;
 
         let rafId = 0;
         let timeoutId = 0;
-        let stopped = false;
-        let currentIndex = -1;
+        let stopped = true;
+        let currentFrameKey = '';
 
-        const endIntro = function () {
+        const hasSeenIntro = function () {
+          try {
+            return window.localStorage.getItem(introSeenKey) === 'true';
+          } catch (error) {
+            return false;
+          }
+        };
+
+        const markIntroSeen = function () {
+          try {
+            window.localStorage.setItem(introSeenKey, 'true');
+          } catch (error) {
+            // The intro still runs when storage is unavailable.
+          }
+        };
+
+        const resetFrame = function () {
+          currentFrameKey = '';
+          lore.innerHTML = '';
+          lore.style.opacity = '0';
+          image.style.opacity = '0';
+          image.removeAttribute('src');
+          image.alt = '';
+          overlay.classList.remove('is-title-card');
+        };
+
+        const finishIntro = function () {
           if (stopped) return;
           stopped = true;
           cancelAnimationFrame(rafId);
           clearTimeout(timeoutId);
+          markIntroSeen();
           overlay.classList.add('is-ending');
           overlay.setAttribute('aria-hidden', 'true');
           setTimeout(function () {
             overlay.classList.add('is-hidden');
-            skipButton.removeEventListener('click', endIntro);
+            overlay.classList.remove('is-active', 'is-ending');
+            resetFrame();
             window.removeEventListener('keydown', onKeyDown);
           }, 550);
         };
 
         const onKeyDown = function (event) {
           if (event.key === 'Escape') {
-            endIntro();
+            finishIntro();
           }
         };
 
-        const showFrame = function (index) {
-          if (index === currentIndex) return;
-          currentIndex = index;
-          const frame = sequence[index];
+        const showLoreFrame = function (index) {
+          const frameKey = 'lore-' + index;
+          if (frameKey === currentFrameKey) return;
+          currentFrameKey = frameKey;
+          overlay.classList.remove('is-title-card');
+          image.style.opacity = '0';
+          lore.innerHTML = loreSequence[index].html;
+        };
+
+        const showTitleFrame = function (index) {
+          const frameKey = 'title-' + index;
+          if (frameKey === currentFrameKey) return;
+          currentFrameKey = frameKey;
+          const frame = titleSequence[index];
+          overlay.classList.add('is-title-card');
+          lore.style.opacity = '0';
           image.src = frame.src;
           image.alt = frame.alt;
         };
 
-        const preloadSequence = function () {
-          sequence.forEach(function (frame) {
+        const preloadTitleSequence = function () {
+          titleSequence.forEach(function (frame) {
             const preloadImage = new Image();
             preloadImage.src = frame.src;
           });
         };
 
+        const opacityForFrame = function (frameTime, frameDuration) {
+          if (frameTime < fadeDuration) {
+            return frameTime / fadeDuration;
+          }
+          if (frameTime > frameDuration - fadeDuration) {
+            return (frameDuration - frameTime) / fadeDuration;
+          }
+          return 1;
+        };
+
         const playSequence = function () {
           const start = performance.now();
+          const loreDuration = loreFrameDuration * loreSequence.length;
+          const titleDuration = titleFrameDuration * titleSequence.length;
+          const totalDuration = loreDuration + titleDuration;
 
           const tick = function (now) {
             if (stopped) return;
 
             const elapsed = now - start;
-            const index = Math.min(Math.floor(elapsed / frameDuration), sequence.length - 1);
-            const frameTime = elapsed - index * frameDuration;
-
-            showFrame(index);
-
-            let opacity = 1;
-            if (frameTime < fadeDuration) {
-              opacity = frameTime / fadeDuration;
-            } else if (frameTime > frameDuration - fadeDuration) {
-              opacity = (frameDuration - frameTime) / fadeDuration;
+            if (elapsed < loreDuration) {
+              const index = Math.min(Math.floor(elapsed / loreFrameDuration), loreSequence.length - 1);
+              const frameTime = elapsed - index * loreFrameDuration;
+              showLoreFrame(index);
+              lore.style.opacity = String(Math.max(0, Math.min(1, opacityForFrame(frameTime, loreFrameDuration))));
+            } else {
+              const titleElapsed = elapsed - loreDuration;
+              const index = Math.min(Math.floor(titleElapsed / titleFrameDuration), titleSequence.length - 1);
+              const frameTime = titleElapsed - index * titleFrameDuration;
+              showTitleFrame(index);
+              image.style.opacity = String(Math.max(0, Math.min(1, opacityForFrame(frameTime, titleFrameDuration))));
             }
-            image.style.opacity = String(Math.max(0, Math.min(1, opacity)));
 
-            if (elapsed >= frameDuration * sequence.length) {
-              endIntro();
+            if (elapsed >= totalDuration) {
+              finishIntro();
               return;
             }
 
@@ -303,41 +381,64 @@
         };
 
         const playReducedMotionSequence = function () {
+          const frames = loreSequence.map(function (_, index) {
+            return { type: 'lore', index: index };
+          }).concat(titleSequence.map(function (_, index) {
+            return { type: 'title', index: index };
+          }));
           let index = 0;
 
           const tick = function () {
             if (stopped) return;
 
-            showFrame(index);
-            image.style.opacity = '1';
+            const frame = frames[index];
+            if (frame.type === 'lore') {
+              showLoreFrame(frame.index);
+              lore.style.opacity = '1';
+            } else {
+              showTitleFrame(frame.index);
+              image.style.opacity = '1';
+            }
 
             index += 1;
-            if (index >= sequence.length) {
-              timeoutId = setTimeout(endIntro, frameDuration);
+            if (index >= frames.length) {
+              timeoutId = setTimeout(finishIntro, titleFrameDuration);
               return;
             }
 
-            timeoutId = setTimeout(tick, frameDuration);
+            timeoutId = setTimeout(tick, frame.type === 'lore' ? loreFrameDuration : titleFrameDuration);
           };
 
           tick();
         };
 
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        overlay.classList.add('is-active');
-        overlay.setAttribute('aria-hidden', 'false');
+        const startIntro = function () {
+          cancelAnimationFrame(rafId);
+          clearTimeout(timeoutId);
+          stopped = false;
+          resetFrame();
+          overlay.classList.remove('is-hidden', 'is-ending');
+          overlay.classList.add('is-active');
+          overlay.setAttribute('aria-hidden', 'false');
+          window.addEventListener('keydown', onKeyDown);
+          preloadTitleSequence();
 
-        skipButton.addEventListener('click', endIntro);
-        window.addEventListener('keydown', onKeyDown);
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            playReducedMotionSequence();
+            return;
+          }
 
-        preloadSequence();
+          playSequence();
+        };
 
-        if (reduceMotion) {
-          playReducedMotionSequence();
-          return;
+        skipButton.addEventListener('click', finishIntro);
+        if (replayButton) {
+          replayButton.addEventListener('click', startIntro);
         }
 
-        playSequence();
+        if (!hasSeenIntro()) {
+          startIntro();
+        }
       })();
     </script>
   </body>
