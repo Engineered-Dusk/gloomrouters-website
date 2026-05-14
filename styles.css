@@ -97,6 +97,13 @@ body {
   opacity: 0;
 }
 
+.intro-lore--final {
+  width: min(52rem, 90vw);
+  font-size: clamp(1.35rem, 5vw, 3rem);
+  line-height: 1.16;
+  letter-spacing: 0.06em;
+}
+
 .intro-lore::before,
 .intro-lore::after {
   position: absolute;
@@ -251,6 +258,11 @@ footer {
     width: min(30rem, 90vw);
     font-size: clamp(0.95rem, 4.5vw, 1.35rem);
     letter-spacing: 0.03em;
+  }
+  .intro-lore--final {
+    width: min(34rem, 92vw);
+    font-size: clamp(1.45rem, 9vw, 2.45rem);
+    line-height: 1.08;
   }
   .intro-skip {
     top: 0.75rem;
@@ -693,13 +705,12 @@ h3 {
 }
 
 .hero__asset-strip {
-  position: absolute;
-  right: 1.4rem;
-  bottom: -1.4rem;
-  left: 1.4rem;
+  position: static;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.65rem;
+  width: min(100%, 660px);
+  margin: 0.8rem auto 0;
 }
 
 .hero__asset-strip img,
@@ -714,12 +725,13 @@ h3 {
 
 .hero__asset-strip img {
   aspect-ratio: 1;
-  height: 128px;
+  height: clamp(72px, 10vw, 104px);
   padding: 0.25rem;
   border: 1px solid rgba(241, 234, 219, 0.16);
   border-radius: 6px;
   background: rgba(3, 5, 8, 0.84);
-  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.34);
+  opacity: 0.92;
 }
 
 main {

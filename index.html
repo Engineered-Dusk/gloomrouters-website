@@ -6,13 +6,13 @@
     <title>Gloom Routers</title>
     <meta
       name="description"
-      content="Gloom Routers is a dark sci-fi tactical card/board game about rival expedition machines fighting over engineered light corridors in a ruined world."
+      content="Gloom Routers is a dark sci-fi tactical card game about rival expedition machines fighting over engineered light corridors in a ruined world."
     />
     <meta property="og:site_name" content="Gloom Routers" />
     <meta property="og:title" content="Gloom Routers" />
     <meta
       property="og:description"
-      content="A dark sci-fi tactical card and board game about rival expedition machines, hidden threats, and contested Relics."
+      content="A dark sci-fi tactical card game about rival expedition machines, hidden threats, and contested Relics."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://gloomrouters.com/" />
@@ -22,7 +22,7 @@
     <meta name="twitter:title" content="Gloom Routers" />
     <meta
       name="twitter:description"
-      content="A dark sci-fi tactical card and board game about rival expedition machines, hidden threats, and contested Relics."
+      content="A dark sci-fi tactical card game about rival expedition machines, hidden threats, and contested Relics."
     />
     <meta name="twitter:image" content="https://gloomrouters.com/assets/card-assets/mechs/echo_breacher.png" />
     <meta name="twitter:image:alt" content="Echo Breacher full card art from Gloom Routers." />
@@ -45,7 +45,7 @@
           <p class="eyebrow">Prototype Development</p>
           <h1 id="hero-title">Gloom Routers</h1>
           <p class="hero__lede">
-            A dark sci-fi tactical card and board game about rival expedition
+            A dark sci-fi tactical card game about rival expedition
             machines forcing engineered light through a ruined world.
           </p>
           <div class="hero__actions" aria-label="Primary actions">
@@ -71,9 +71,9 @@
           <img class="hero__title-art" src="assets/gloomRoutersTitleArt.png" alt="Gloom Routers title art" width="1536" height="1024" />
           <div class="hero__asset-strip" aria-hidden="true">
             <img src="assets/card-assets/routes/prism_sweep.png" alt="" width="1491" height="1055" />
-            <img src="assets/card-assets/mechs/heliostride_colossus.png" alt="" width="1254" height="1254" />
-            <img src="assets/card-assets/nodes/command_prism.png" alt="" width="1254" height="1254" />
-            <img src="assets/card-assets/directives/predatory_geometry.png" alt="" width="1254" height="1254" />
+            <img src="assets/card-assets/mechs/whisper_net_skimmer.png" alt="" width="1254" height="1254" />
+            <img src="assets/card-assets/mechs/vintage_lunchbox_project_10010.png" alt="" width="1254" height="1254" />
+            <img src="assets/card-assets/pathing/heliostat_drift.png" alt="" width="1672" height="941" />
           </div>
         </div>
       </div>
@@ -158,7 +158,7 @@
           </article>
 
           <article class="overview-step">
-            <img class="overview-step__image" src="assets/card-assets/pathing/heliostat_drift.png" alt="" width="1491" height="1055" />
+            <img class="overview-step__image" src="assets/card-assets/pathing/heliostat_drift.png" alt="" width="1672" height="941" />
             <div class="overview-step__body">
               <span class="overview-step__number" aria-hidden="true">3</span>
               <h3>Turn Order</h3>
@@ -217,10 +217,7 @@
             <div class="overview-step__body">
               <span class="overview-step__number" aria-hidden="true">7</span>
               <h3>
-                <span class="paired-icons">
-                  <img class="rule-icon" src="assets/card-assets/icons/armistice.png" alt="Armistice icon" width="24" height="24" />
-                  <img class="rule-icon" src="assets/card-assets/icons/refresh.png" alt="Refresh icon" width="24" height="24" />
-                </span>
+                <img class="rule-icon" src="assets/card-assets/icons/armistice.png" alt="Armistice icon" width="24" height="24" />
                 Armistice
               </h3>
               <p>A brief pause in hostile engagement in which card effects may trigger.</p>
@@ -231,7 +228,7 @@
             <img class="overview-step__image" src="assets/card-assets/routes/total_blackout.png" alt="" width="1491" height="1055" />
             <div class="overview-step__body">
               <span class="overview-step__number" aria-hidden="true">8</span>
-              <h3>Reset</h3>
+              <h3><img class="rule-icon" src="assets/card-assets/icons/refresh.png" alt="Refresh icon" width="24" height="24" /> Reset</h3>
               <p>
                 Committed Mechs are readied, abilities are triggered, and the
                 board is set to a refresh state before returning to the Route
@@ -420,6 +417,7 @@
           currentFrameKey = '';
           lore.innerHTML = '';
           lore.style.opacity = '0';
+          lore.classList.remove('intro-lore--final');
           image.style.opacity = '0';
           image.removeAttribute('src');
           image.alt = '';
@@ -454,6 +452,7 @@
           currentFrameKey = frameKey;
           overlay.classList.remove('is-title-card');
           image.style.opacity = '0';
+          lore.classList.toggle('intro-lore--final', index === loreSequence.length - 1);
           lore.innerHTML = loreSequence[index].html;
         };
 
@@ -464,6 +463,7 @@
           const frame = titleSequence[index];
           overlay.classList.add('is-title-card');
           lore.style.opacity = '0';
+          lore.classList.remove('intro-lore--final');
           image.src = frame.src;
           image.alt = frame.alt;
         };
@@ -485,9 +485,53 @@
           return 1;
         };
 
+        const getLoreFrameText = function (frame) {
+          return frame.html
+            .replace(/<br\s*\/?>/gi, ' ')
+            .replace(/<[^>]+>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+        };
+
+        const getLoreFrameDuration = function (index) {
+          const textLength = getLoreFrameText(loreSequence[index]).length;
+          if (textLength >= 260) return loreFrameDuration + 2000;
+          if (textLength >= 145) return loreFrameDuration + 1000;
+          return loreFrameDuration;
+        };
+
+        const loreFrameDurations = loreSequence.map(function (_, index) {
+          return getLoreFrameDuration(index);
+        });
+
+        const loreSequenceDuration = loreFrameDurations.reduce(function (total, duration) {
+          return total + duration;
+        }, 0);
+
+        const getLoreFrameAtElapsed = function (elapsed) {
+          let frameStart = 0;
+          for (let index = 0; index < loreFrameDurations.length; index += 1) {
+            const frameDuration = loreFrameDurations[index];
+            if (elapsed < frameStart + frameDuration || index === loreFrameDurations.length - 1) {
+              return {
+                index: index,
+                frameTime: elapsed - frameStart,
+                frameDuration: frameDuration
+              };
+            }
+            frameStart += frameDuration;
+          }
+
+          return {
+            index: loreFrameDurations.length - 1,
+            frameTime: 0,
+            frameDuration: loreFrameDurations[loreFrameDurations.length - 1]
+          };
+        };
+
         const playSequence = function () {
           const start = performance.now();
-          const loreDuration = loreFrameDuration * loreSequence.length;
+          const loreDuration = loreSequenceDuration;
           const titleDuration = titleFrameDuration * titleSequence.length;
           const totalDuration = loreDuration + titleDuration;
 
@@ -496,10 +540,9 @@
 
             const elapsed = now - start;
             if (elapsed < loreDuration) {
-              const index = Math.min(Math.floor(elapsed / loreFrameDuration), loreSequence.length - 1);
-              const frameTime = elapsed - index * loreFrameDuration;
-              showLoreFrame(index);
-              lore.style.opacity = String(Math.max(0, Math.min(1, opacityForFrame(frameTime, loreFrameDuration))));
+              const frame = getLoreFrameAtElapsed(elapsed);
+              showLoreFrame(frame.index);
+              lore.style.opacity = String(Math.max(0, Math.min(1, opacityForFrame(frame.frameTime, frame.frameDuration))));
             } else {
               const titleElapsed = elapsed - loreDuration;
               const index = Math.min(Math.floor(titleElapsed / titleFrameDuration), titleSequence.length - 1);
@@ -545,7 +588,7 @@
               return;
             }
 
-            timeoutId = setTimeout(tick, frame.type === 'lore' ? loreFrameDuration : titleFrameDuration);
+            timeoutId = setTimeout(tick, frame.type === 'lore' ? getLoreFrameDuration(frame.index) : titleFrameDuration);
           };
 
           tick();
