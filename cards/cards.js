@@ -259,42 +259,181 @@
     });
     return grid;
   }
+
+  function getBrowserSections() {
+    const sections = [];
+    FACTIONS.forEach(faction => {
+      const deckCards = expandedDeck(faction);
+      const routes = routeDeck(faction);
+      sections.push({
+        id: `${faction}-deck`,
+        faction,
+        title: `${DECKS[faction].name} Play Deck`,
+        count: `${deckCards.length} main-deck cards`,
+        entries: deckCards,
+        label: `${DECKS[faction].name} play deck`
+      });
+      sections.push({
+        id: `${faction}-routes`,
+        faction,
+        title: `${DECKS[faction].name} Route Deck`,
+        count: `${routes.length} route cards`,
+        entries: routes,
+        label: `${DECKS[faction].name} route deck`
+      });
+    });
+
+    sections.push({
+      id: 'generated-cards',
+      faction: 'nova',
+      title: 'Generated Cards',
+      count: `${GENERATED_CARDS.length} generated cards`,
+      entries: cardCollection(GENERATED_CARDS),
+      label: 'Generated cards'
+    });
+    sections.push({
+      id: 'pathing',
+      faction: 'aurora',
+      title: 'Pathing',
+      count: `${PATHING_CARDS.length} pathing cards`,
+      entries: cardCollection(PATHING_CARDS),
+      label: 'Pathing'
+    });
+
+    return sections;
+  }
+
+  function renderDeckSection(sectionDef) {
+    const section = el('section', 'deck-section', {
+      id: sectionDef.id,
+      'data-faction': sectionDef.faction,
+      'aria-labelledby': `${sectionDef.id}-heading`
+    });
+    section.cardBrowserSection = sectionDef;
+    section.dataset.rendered = 'false';
+
+    const heading = el('div', 'deck-heading');
+    const headingText = el('div', 'deck-heading__text');
+    headingText.append(
+      el('h2', '', { id: `${sectionDef.id}-heading`, text: sectionDef.title }),
+      el('div', 'deck-count', { text: sectionDef.count })
+    );
+
+    const toggle = el('button', 'deck-toggle', {
+      type: 'button',
+      'aria-expanded': 'false',
+      'aria-controls': `${sectionDef.id}-panel`,
+      text: 'Open'
+    });
+    heading.append(headingText, toggle);
+
+    const panel = el('div', 'deck-panel', { id: `${sectionDef.id}-panel` });
+    panel.hidden = true;
+    section.append(heading, panel);
+    return section;
+  }
+
+  function renderSectionCards(section) {
+    if (section.dataset.rendered === 'true') return;
+    const panel = section.querySelector('.deck-panel');
+    const sectionDef = section.cardBrowserSection;
+    if (!panel || !sectionDef) return;
+    panel.replaceChildren(renderCardGrid(sectionDef.entries, sectionDef.faction, sectionDef.label));
+    section.dataset.rendered = 'true';
+  }
+
+  function unloadSectionCards(section) {
+    const panel = section.querySelector('.deck-panel');
+    if (!panel) return;
+    panel.replaceChildren();
+    section.dataset.rendered = 'false';
+  }
+
+  function setSectionOpen(section, shouldOpen) {
+    const toggle = section.querySelector('.deck-toggle');
+    const panel = section.querySelector('.deck-panel');
+    if (!toggle || !panel) return;
+
+    section.classList.toggle('is-open', shouldOpen);
+    toggle.setAttribute('aria-expanded', String(shouldOpen));
+    toggle.textContent = shouldOpen ? 'Close' : 'Open';
+    panel.hidden = !shouldOpen;
+
+    if (shouldOpen) renderSectionCards(section);
+    else unloadSectionCards(section);
+  }
+
+  function openBrowserSection(section, shouldScroll = false) {
+    const root = document.getElementById('card-browser');
+    if (!root) return;
+
+    root.querySelectorAll('.deck-section').forEach(currentSection => {
+      setSectionOpen(currentSection, currentSection === section);
+    });
+
+    if (shouldScroll) {
+      section.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    }
+  }
+
+  function openSectionFromHash(shouldScroll = false) {
+    if (!window.location.hash) return false;
+    const targetId = window.location.hash.slice(1);
+    const target = document.getElementById(targetId);
+    if (!target || !target.classList.contains('deck-section')) return false;
+    openBrowserSection(target, shouldScroll);
+    return true;
+  }
+
+  function setupBrowserSections() {
+    const root = document.getElementById('card-browser');
+    if (!root) return;
+
+    root.addEventListener('click', event => {
+      const toggle = event.target.closest('.deck-toggle');
+      if (!toggle) return;
+      const section = toggle.closest('.deck-section');
+      if (!section) return;
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        setSectionOpen(section, false);
+        return;
+      }
+      openBrowserSection(section);
+    });
+
+    document.querySelectorAll('.jump-links a[href^="#"]').forEach(link => {
+      link.addEventListener('click', event => {
+        const target = document.getElementById(link.getAttribute('href').slice(1));
+        if (!target || !target.classList.contains('deck-section')) return;
+        event.preventDefault();
+        window.history.pushState(null, '', link.getAttribute('href'));
+        openBrowserSection(target, true);
+      });
+    });
+
+    window.addEventListener('hashchange', () => {
+      openSectionFromHash(true);
+    });
+  }
+
   function renderPage() {
     const root = document.getElementById('card-browser');
     if (!root) return;
     const fragment = document.createDocumentFragment();
-    FACTIONS.forEach(faction => {
-      const deckCards = expandedDeck(faction);
-      const routes = routeDeck(faction);
-      const section = el('section', 'deck-section', { id: `${faction}-deck`, 'data-faction': faction, 'aria-labelledby': `${faction}-heading` });
-      const heading = el('div', 'deck-heading');
-      heading.append(el('h2', '', { id: `${faction}-heading`, text: `${DECKS[faction].name} Play Deck` }));
-      heading.append(el('div', 'deck-count', { text: `${deckCards.length} main-deck cards` }));
-      section.append(heading);
-      section.append(renderCardGrid(deckCards, faction, `${DECKS[faction].name} play deck`));
-      const routeHeading = el('div', 'deck-subheading');
-      routeHeading.append(el('h3', '', { text: `${DECKS[faction].name} Route Deck` }));
-      routeHeading.append(el('div', 'deck-count', { text: `${routes.length} route cards` }));
-      section.append(routeHeading);
-      section.append(renderCardGrid(routes, faction, `${DECKS[faction].name} route deck`));
-      fragment.append(section);
+    getBrowserSections().forEach(sectionDef => {
+      fragment.append(renderDeckSection(sectionDef));
     });
-
-    const generated = el('section', 'deck-section', { id: 'generated-cards', 'data-faction': 'nova', 'aria-labelledby': 'generated-cards-heading' });
-    const generatedHeading = el('div', 'deck-heading');
-    generatedHeading.append(el('h2', '', { id: 'generated-cards-heading', text: 'Generated Cards' }));
-    generatedHeading.append(el('div', 'deck-count', { text: `${GENERATED_CARDS.length} generated cards` }));
-    generated.append(generatedHeading, renderCardGrid(cardCollection(GENERATED_CARDS), 'nova', 'Generated cards'));
-    fragment.append(generated);
-
-    const pathing = el('section', 'deck-section', { id: 'pathing', 'data-faction': 'aurora', 'aria-labelledby': 'pathing-heading' });
-    const pathingHeading = el('div', 'deck-heading');
-    pathingHeading.append(el('h2', '', { id: 'pathing-heading', text: 'Pathing' }));
-    pathingHeading.append(el('div', 'deck-count', { text: `${PATHING_CARDS.length} pathing cards` }));
-    pathing.append(pathingHeading, renderCardGrid(cardCollection(PATHING_CARDS), 'aurora', 'Pathing'));
-    fragment.append(pathing);
-
     root.replaceChildren(fragment);
+    setupBrowserSections();
+
+    if (!openSectionFromHash()) {
+      const firstSection = root.querySelector('.deck-section');
+      if (firstSection) openBrowserSection(firstSection);
+    }
   }
   function renderHomepageShowcase() {
     const root = document.getElementById('homepage-card-showcase');

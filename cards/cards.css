@@ -57,13 +57,14 @@ h1 { margin: 0; font-size: clamp(2.1rem, 5vw, 5rem); line-height: 0.95; }
 .lede { max-width: 76ch; color: var(--muted); font-size: 1.05rem; line-height: 1.65; }
 
 .deck-section {
-  margin: 0 0 3rem;
+  margin: 0 0 1rem;
   padding: 1rem;
   border: 1px solid var(--line);
   border-radius: 1.2rem;
   background: linear-gradient(180deg, rgba(17, 23, 33, 0.86), rgba(10, 14, 21, 0.82));
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
 }
+.deck-section.is-open { margin-bottom: 3rem; }
 .deck-section[data-faction="aurora"] { --accent: var(--aurora); }
 .deck-section[data-faction="vesper"] { --accent: var(--vesper); }
 .deck-section[data-faction="nova"] { --accent: var(--nova); }
@@ -76,10 +77,37 @@ h1 { margin: 0; font-size: clamp(2.1rem, 5vw, 5rem); line-height: 0.95; }
   padding: 0.2rem 0.2rem 1rem;
   margin-bottom: 1rem;
 }
+.deck-heading__text {
+  min-width: 0;
+}
 .deck-heading h2 { margin: 0; font-size: clamp(1.45rem, 3vw, 2.3rem); }
 .deck-subheading { align-items: end; justify-content: space-between; gap: 1rem; margin: 1.35rem 0 0.9rem; padding: 1rem 0.2rem 0; border-top: 1px solid rgba(255,255,255,0.08); }
 .deck-subheading h3 { margin: 0; font-size: clamp(1.15rem, 2vw, 1.65rem); }
 .deck-count { color: var(--accent); font-weight: 800; }
+.deck-toggle {
+  flex: 0 0 auto;
+  min-height: 2.7rem;
+  padding: 0.58rem 0.9rem;
+  border: 1px solid var(--line-bright);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
+    rgba(7, 11, 17, 0.82);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+.deck-toggle:hover,
+.deck-toggle:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.deck-panel[hidden] {
+  display: none;
+}
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -248,6 +276,8 @@ h1 { margin: 0; font-size: clamp(2.1rem, 5vw, 5rem); line-height: 0.95; }
 @media (max-width: 700px) {
   .cards-hero, .deck-browser { width: min(100% - 1rem, 1500px); }
   .deck-section { padding: 0.65rem; }
-  .deck-heading, .deck-subheading { align-items: start; flex-direction: column; }
+  .deck-heading { align-items: center; gap: 0.75rem; }
+  .deck-subheading { align-items: start; flex-direction: column; }
+  .deck-toggle { min-height: 2.45rem; padding-inline: 0.8rem; }
   .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; }
 }
