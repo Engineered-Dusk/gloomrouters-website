@@ -3,11 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gloom Routers | Route the light. Survive the dark.</title>
+    <title>Gloom Routers</title>
     <meta
       name="description"
       content="Gloom Routers is a dark sci-fi tactical card/board game about rival expedition machines fighting over engineered light corridors in a ruined world."
     />
+    <meta property="og:site_name" content="Gloom Routers" />
+    <meta property="og:title" content="Gloom Routers" />
+    <meta
+      property="og:description"
+      content="A dark sci-fi tactical card and board game about rival expedition machines, hidden threats, and contested Relics."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gloomrouters.com/" />
+    <meta property="og:image" content="https://gloomrouters.com/assets/card-assets/mechs/echo_breacher.png" />
+    <meta property="og:image:alt" content="Echo Breacher full card art from Gloom Routers." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Gloom Routers" />
+    <meta
+      name="twitter:description"
+      content="A dark sci-fi tactical card and board game about rival expedition machines, hidden threats, and contested Relics."
+    />
+    <meta name="twitter:image" content="https://gloomrouters.com/assets/card-assets/mechs/echo_breacher.png" />
+    <meta name="twitter:image:alt" content="Echo Breacher full card art from Gloom Routers." />
+    <link rel="icon" type="image/png" href="assets/card-assets/mechs/echo_breacher.png" />
+    <link rel="apple-touch-icon" href="assets/card-assets/mechs/echo_breacher.png" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="cards/card-render.css" />
   </head>
@@ -19,161 +39,219 @@
       <img class="intro-title" id="intro-title" src="assets/shitpileCubedTitleArt.png" alt="Shitpile Cubed Productions Presents title" width="1280" height="720" />
     </div>
 
-    <header class="hero">
+    <header class="hero" aria-labelledby="hero-title">
       <div class="hero__content">
-        <p class="eyebrow">Prototype Development</p>
-        <h1>Gloom Routers</h1>
-        <p class="tagline">Route the light. Survive the dark.</p>
-        <p>
-          Gloom Routers is a dark sci-fi tactical card/board game about rival
-          expedition machines fighting over engineered light corridors in a
-          ruined world.
-        </p>
-        <p class="hero__actions">
-          <a class="hero__button" href="/play/">Play vs Bot</a>
-          <button type="button" class="hero__button hero__button--secondary" id="intro-replay">Replay Intro</button>
-        </p>
+        <div class="hero__copy">
+          <p class="eyebrow">Prototype Development</p>
+          <h1 id="hero-title">Gloom Routers</h1>
+          <p class="hero__lede">
+            A dark sci-fi tactical card and board game about rival expedition
+            machines forcing engineered light through a ruined world.
+          </p>
+          <div class="hero__actions" aria-label="Primary actions">
+            <a class="hero__button" href="/play/">Play vs Bot</a>
+            <button type="button" class="hero__button hero__button--secondary" id="intro-replay">Replay Intro</button>
+          </div>
+          <dl class="hero__facts" aria-label="Prototype highlights">
+            <div>
+              <dt>Mode</dt>
+              <dd>Browser prototype</dd>
+            </div>
+            <div>
+              <dt>Core loop</dt>
+              <dd>Route, deploy, engage</dd>
+            </div>
+            <div>
+              <dt>Goal</dt>
+              <dd>Secure Relics</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="hero__media" aria-label="Gloom Routers art preview">
+          <img class="hero__title-art" src="assets/gloomRoutersTitleArt.png" alt="Gloom Routers title art" width="1536" height="1024" />
+          <div class="hero__asset-strip" aria-hidden="true">
+            <img src="assets/card-assets/routes/prism_sweep.png" alt="" width="1491" height="1055" />
+            <img src="assets/card-assets/mechs/heliostride_colossus.png" alt="" width="1254" height="1254" />
+            <img src="assets/card-assets/nodes/command_prism.png" alt="" width="1254" height="1254" />
+            <img src="assets/card-assets/directives/predatory_geometry.png" alt="" width="1254" height="1254" />
+          </div>
+        </div>
       </div>
     </header>
 
     <main>
-      <section aria-labelledby="what-it-is">
-        <h2 id="what-it-is">What it is</h2>
-        <p>
-          Command Mechs, contest Relics, and build a strong playfield. Gloom
-          Routers focuses on tactical pathing, high-pressure engagements, and
-          board-state control through cards.
-        </p>
+      <section class="pitch-section" aria-labelledby="what-it-is">
+        <div class="section-heading">
+          <p class="section-kicker">What it is</p>
+          <h2 id="what-it-is">A tactical fight over temporary light</h2>
+        </div>
+        <div class="pitch-layout">
+          <figure class="feature-art">
+            <img src="assets/card-assets/pathing/ghostlight_spill.png" alt="Ghostlight Spill pathing art" width="1491" height="1055" />
+            <figcaption>Pathing changes the round before either player can settle in.</figcaption>
+          </figure>
+          <div class="pitch-copy">
+            <p>
+              Command Mechs, build routing infrastructure, and contest Relics in
+              a hostile playfield split between bright Corridors and the Gloom.
+              Every round starts with route selection, then turns into a pressure
+              puzzle of deployments, hidden threats, and engagement timing.
+            </p>
+            <div class="system-grid" aria-label="Core card systems">
+              <article class="system-card">
+                <img src="assets/card-assets/routes/quiet_transit.png" alt="" width="1491" height="1055" />
+                <h3>Routes</h3>
+                <p>Choose the light package that powers your round.</p>
+              </article>
+              <article class="system-card">
+                <img src="assets/card-assets/nodes/recovery_lens.png" alt="" width="1254" height="1254" />
+                <h3>Nodes</h3>
+                <p>Anchor the field with prisms, lenses, and relays.</p>
+              </article>
+              <article class="system-card">
+                <img src="assets/card-assets/modules/vector_harness.png" alt="" width="1254" height="1254" />
+                <h3>Modules</h3>
+                <p>Upgrade Mechs and bend combat math before impact.</p>
+              </article>
+              <article class="system-card">
+                <img src="assets/card-assets/directives/prism_lockdown.png" alt="" width="1254" height="1254" />
+                <h3>Directives</h3>
+                <p>Fire off tactical orders at the moment they hurt most.</p>
+              </article>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="game-overview" aria-labelledby="game-overview">
-        <div class="section-kicker">Game Overview</div>
-        <h2 id="game-overview">How Gloom Routers Plays</h2>
-        <p class="section-intro">
-          Gloom Routers is a two-player card battle about building a playfield,
-          choosing Routes, and winning engagements to claim Relics.
-        </p>
+        <div class="section-heading">
+          <p class="section-kicker">Game Overview</p>
+          <h2 id="game-overview">How Gloom Routers plays</h2>
+          <p class="section-intro">
+            Two players build a playfield, choose Routes, and win engagements to
+            claim Relics before the site goes dark.
+          </p>
+        </div>
 
         <div class="overview-steps" aria-label="Game flow overview">
           <article class="overview-step">
-            <div class="overview-step__number" aria-hidden="true">1</div>
+            <img class="overview-step__image" src="assets/card-assets/mechs/ashwake_scavenger.png" alt="" width="1254" height="1254" />
             <div class="overview-step__body">
-              <h3>Starting Out</h3>
+              <span class="overview-step__number" aria-hidden="true">1</span>
+              <h3>Start with a crew</h3>
               <p>
-                Each player starts with a deck, a Route package, a hand of cards,
-                Cores, and Relics. Cores are the resource you spend to play
-                cards. Relics are how you pull ahead and win.
+                Each player brings a deck and a Route package.
               </p>
             </div>
           </article>
 
           <article class="overview-step">
-            <div class="overview-step__number" aria-hidden="true">2</div>
+            <img class="overview-step__image" src="assets/card-assets/routes/prism_sweep.png" alt="" width="1491" height="1055" />
             <div class="overview-step__body">
-              <h3><img class="rule-icon" src="assets/card-assets/icons/route.png" alt="Route icon" width="24" height="24" /> Route Pathing</h3>
+              <span class="overview-step__number" aria-hidden="true">2</span>
+              <h3><img class="rule-icon" src="assets/card-assets/icons/route.png" alt="Route icon" width="24" height="24" /> Route pathing</h3>
               <p>
-                Each round begins with Route Pathing. Both players choose a
-                Route, then reveal them together. Routes give you
-                <span class="icon-label"><img class="rule-icon" src="assets/card-assets/icons/core.png" alt="Cores icon" width="22" height="22" /> Cores</span>,
-                <span class="icon-label"><img class="rule-icon" src="assets/card-assets/icons/draw.png" alt="Draw icon" width="22" height="22" /> cards</span>,
-                and
-                <span class="icon-label"><img class="rule-icon" src="assets/card-assets/icons/magnitude.png" alt="Magnitude icon" width="22" height="22" /> Magnitude</span>
-                for the round. A Pathing card is also revealed, changing the
-                round in some way.
+                Each player chooses and reveals a route card, adding strategy
+                and flavor to the current round.
               </p>
             </div>
           </article>
 
           <article class="overview-step">
-            <div class="overview-step__number" aria-hidden="true">3</div>
+            <img class="overview-step__image" src="assets/card-assets/pathing/heliostat_drift.png" alt="" width="1491" height="1055" />
             <div class="overview-step__body">
+              <span class="overview-step__number" aria-hidden="true">3</span>
               <h3>Turn Order</h3>
               <p>
-                Next, one player chooses turn order. This usually gives the
-                player who is behind a little control over how the round unfolds.
+                Turn order choice is awarded to one player. They may then
+                choose who goes first for both Deployment and Engagement.
               </p>
             </div>
           </article>
 
           <article class="overview-step">
-            <div class="overview-step__number" aria-hidden="true">4</div>
+            <img class="overview-step__image" src="assets/card-assets/modules/signal_scope.png" alt="" width="1254" height="1254" />
             <div class="overview-step__body">
+              <span class="overview-step__number" aria-hidden="true">4</span>
               <h3><img class="rule-icon" src="assets/card-assets/icons/deployment.png" alt="Deployment icon" width="24" height="24" /> Deployment</h3>
               <p>
-                During Deployment, players spend Cores to add Mechs, Nodes,
-                Modules, and Directives to the playfield.
+                Spend Cores to place Mechs, Nodes, Modules, and Directives onto
+                the playfield.
               </p>
             </div>
           </article>
 
           <article class="overview-step overview-step--wide">
-            <div class="overview-step__number" aria-hidden="true">5</div>
+            <img class="overview-step__image" src="assets/card-assets/directives/breach_reckoning.png" alt="" width="1254" height="1254" />
             <div class="overview-step__body">
-              <h3>Engagements</h3>
+              <span class="overview-step__number" aria-hidden="true">5</span>
+              <h3>Engagement</h3>
               <p>
-                Most fights are decided by Engagement Value (EV). EV is the
-                strength of your Mechs, plus bonuses from cards already on the
-                playfield.
+                Each player may choose to engage with the other using their
+                deployed Mechs. Hidden Gloom Mechs and Directive cards ensure
+                the engagements keep both players on their toes.
               </p>
-              <p>
-                <span class="icon-label"><img class="rule-icon" src="assets/card-assets/icons/attack.png" alt="Attack icon" width="22" height="22" /> During Engagements</span>,
-                players attack with Ready Mechs and choose one of three
-                engagement types:
-              </p>
+              <p>Choose up to 2 of the following engagement choices:</p>
               <ul class="engagement-list">
-                <li><strong>Combat</strong> pressures the opponent’s playfield.</li>
-                <li><strong>Relic engagements</strong> take Relics.</li>
-                <li><strong>Tactical engagements</strong> create utility swings, like readying Mechs, committing enemy Mechs, drawing cards, or disrupting the opponent.</li>
+                <li><strong>Combat</strong></li>
+                <li><strong>Relic</strong></li>
+                <li><strong>Tactical</strong></li>
               </ul>
+            </div>
+          </article>
+
+          <article class="overview-step">
+            <img class="overview-step__image" src="assets/card-assets/directives/ashwake_recovery.png" alt="" width="1254" height="1254" />
+            <div class="overview-step__body">
+              <span class="overview-step__number" aria-hidden="true">6</span>
+              <h3><img class="rule-icon" src="assets/card-assets/icons/aftermath.png" alt="Aftermath icon" width="24" height="24" /> Aftermath</h3>
               <p>
-                <span class="icon-label"><img class="rule-icon" src="assets/card-assets/icons/defense.png" alt="Defense icon" width="22" height="22" /> The defender</span>
-                may block with Ready Mechs, or let the attack go uncontested.
-                Then compare attacking EV to defending EV. Higher EV wins; ties
-                go to the attacker.
+                After a defense declaration, a winner is declared, then
+                abilities and modifiers are resolved.
               </p>
             </div>
           </article>
 
           <article class="overview-step">
-            <div class="overview-step__number" aria-hidden="true">6</div>
+            <img class="overview-step__image" src="assets/card-assets/nodes/survey_relay.png" alt="" width="1254" height="1254" />
             <div class="overview-step__body">
-              <h3><img class="rule-icon" src="assets/card-assets/icons/aftermath.png" alt="Aftermath icon" width="24" height="24" /> After The Fight</h3>
-              <p>Aftermath effects happen after an engagement resolves.</p>
-            </div>
-          </article>
-
-          <article class="overview-step">
-            <div class="overview-step__number" aria-hidden="true">7</div>
-            <div class="overview-step__body">
+              <span class="overview-step__number" aria-hidden="true">7</span>
               <h3>
                 <span class="paired-icons">
                   <img class="rule-icon" src="assets/card-assets/icons/armistice.png" alt="Armistice icon" width="24" height="24" />
                   <img class="rule-icon" src="assets/card-assets/icons/refresh.png" alt="Refresh icon" width="24" height="24" />
                 </span>
-                End Of Round
+                Armistice
               </h3>
-              <p>
-                After both players finish engaging, Armistice and Refresh clean
-                up the round, ready cards, pay out refresh effects, and start the
-                next round.
-              </p>
+              <p>A brief pause in hostile engagement in which card effects may trigger.</p>
             </div>
           </article>
 
           <article class="overview-step">
-            <div class="overview-step__number" aria-hidden="true">8</div>
+            <img class="overview-step__image" src="assets/card-assets/routes/total_blackout.png" alt="" width="1491" height="1055" />
             <div class="overview-step__body">
-              <h3>Winning</h3>
+              <span class="overview-step__number" aria-hidden="true">8</span>
+              <h3>Reset</h3>
               <p>
-                If the Relic Site runs out and the game is still tied, sudden
-                death rounds continue until one player pulls ahead.
+                Committed Mechs are readied, abilities are triggered, and the
+                board is set to a refresh state before returning to the Route
+                Pathing round.
               </p>
             </div>
           </article>
         </div>
 
+        <aside class="win-condition-panel">
+          <h3>Winning the game</h3>
+          <p>
+            The first player to reach 10 Relics wins. If the shared, public
+            Relic pool (Relic Site) reaches zero, players enter a sudden death
+            round.
+          </p>
+        </aside>
+
         <div class="icon-glossary" aria-labelledby="icon-glossary">
-          <h3 id="icon-glossary">Icon Glossary</h3>
+          <h3 id="icon-glossary">Icon glossary</h3>
           <div class="glossary-grid">
             <div class="glossary-item"><img class="rule-icon" src="assets/card-assets/icons/route.png" alt="Route icon" width="24" height="24" /><strong>Route</strong><span>Routes and Pathing reveal at the start of the round.</span></div>
             <div class="glossary-item"><img class="rule-icon" src="assets/card-assets/icons/core.png" alt="Cores icon" width="24" height="24" /><strong>Cores</strong><span>Resources gained from a Route.</span></div>
@@ -191,23 +269,84 @@
         </div>
       </section>
 
-      <section aria-labelledby="status">
-        <h2 id="status">Development status</h2>
-        <p><strong>Gloom Routers is currently in prototype development.</strong></p>
-        <p>A playable browser prototype is being developed and tested.</p>
-        <p>Screenshots and prototype footage will be added as the game develops.</p>
+      <section class="status-section" aria-labelledby="status">
+        <div class="section-heading">
+          <p class="section-kicker">Development Status</p>
+          <h2 id="status">Prototype online, systems still evolving</h2>
+        </div>
+        <div class="status-layout">
+          <div class="status-copy">
+            <p><strong>Gloom Routers is currently in prototype development.</strong></p>
+            <p>
+              A playable browser build is being developed and tested. The public
+              site now points players toward the bot prototype, rendered card
+              browser, and the core shape of the rules.
+            </p>
+            <div class="status-grid" aria-label="Current development focus">
+              <article>
+                <h3>Playable</h3>
+                <p>Bot prototype available from the landing page.</p>
+              </article>
+              <article>
+                <h3>Visible</h3>
+                <p>Rendered deck previews are wired into the site.</p>
+              </article>
+              <article>
+                <h3>Next</h3>
+                <p>Playtest notes, screenshots, and footage will follow as the game develops.</p>
+              </article>
+            </div>
+          </div>
+          <figure class="status-art">
+            <article class="rendered-card status-current-card" aria-label="Stormwall Phalanx mech card">
+              <div class="card-art-window">
+                <img class="card-art-bg" src="assets/card-assets/backgrounds/corridor-pixel.png" alt="" loading="lazy" decoding="async" />
+                <img class="card-art-main" src="assets/card-assets/mechs/stormwall_phalanx.png" alt="" loading="lazy" decoding="async" />
+              </div>
+              <img class="card-frame" src="assets/card-assets/frames/aurora-frame.png" alt="" loading="lazy" decoding="async" />
+              <div class="card-icon card-icon--ev">
+                <img src="assets/card-assets/icons/ev.png" alt="" loading="lazy" decoding="async" />
+                <strong>6</strong>
+              </div>
+              <div class="card-icon card-icon--cost">
+                <img src="assets/card-assets/icons/core-cost.png" alt="" loading="lazy" decoding="async" />
+                <strong>5</strong>
+              </div>
+              <div class="card-name fit-long">Stormwall Phalanx</div>
+              <div class="card-rarity">
+                <img src="assets/card-assets/icons/si.png" alt="SI rarity" loading="lazy" decoding="async" />
+              </div>
+              <div class="card-flavor">It holds because there is nowhere else to go.</div>
+            </article>
+            <figcaption>Current prototype art and rendered cards are already in active use.</figcaption>
+          </figure>
+        </div>
       </section>
 
-      <section aria-labelledby="cards">
-        <h2 id="cards">Card previews</h2>
-        <p>Selected active in-game card examples are shown below. <a href="/cards">Browse the full rendered card decks</a>.</p>
+      <section class="cards-section" aria-labelledby="cards">
+        <div class="section-heading section-heading--inline">
+          <div>
+            <p class="section-kicker">Card Previews</p>
+            <h2 id="cards">Active card examples</h2>
+          </div>
+          <a class="section-link" href="/cards">Browse full rendered decks</a>
+        </div>
         <div class="card-showcase" id="homepage-card-showcase" aria-label="Selected rendered Gloom Routers cards"></div>
       </section>
 
-      <section aria-labelledby="follow">
-        <h2 id="follow">Playtest & follow</h2>
-        <p>Playtest info coming later.</p>
-        <p>Development updates coming soon.</p>
+      <section class="follow-section" aria-labelledby="follow">
+        <div class="follow-panel">
+          <img src="assets/card-assets/pathing/occluded_corridor.png" alt="" width="1491" height="1055" />
+          <div>
+            <p class="section-kicker">Playtest & Follow</p>
+            <h2 id="follow">More field reports are coming</h2>
+            <p>
+              Playtest info, development updates, screenshots, and prototype
+              footage will be added as the project moves from internal tuning
+              toward broader play.
+            </p>
+          </div>
+        </div>
       </section>
     </main>
 
