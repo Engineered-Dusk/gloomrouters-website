@@ -49,8 +49,9 @@
             machines forcing engineered light through a ruined world.
           </p>
           <div class="hero__actions" aria-label="Primary actions">
-            <a class="hero__button" href="/play/">Play vs Bot</a>
-            <button type="button" class="hero__button hero__button--secondary" id="intro-replay">Replay Intro</button>
+            <a class="hero__button hero__button--play" href="/play/">Play vs Bot</a>
+            <button type="button" class="hero__button hero__button--intro" id="intro-replay">Replay Intro</button>
+            <a class="hero__button hero__button--story" href="/story/">Story</a>
           </div>
           <dl class="hero__facts" aria-label="Prototype highlights">
             <div>
@@ -364,20 +365,19 @@
 
         const introSeenKey = 'gloomRoutersIntroSeen';
         const loreSequence = [
-          { html: 'The Earth’s wounds never healed.<br>The harmony that once allowed life had fragmented.' },
-          { html: 'First came the heat of day.<br>Blistering. Uninhabitable.<br>Then came the cold of night.<br>Rigid. Insurmountable.' },
-          { html: 'So humanity harnessed the sun.<br>A desperate final attempt at survival.' },
-          { html: 'They called it the <strong><em>Aegis Array</em></strong>:<br>an astronomical structure orbiting the Earth,<br>composed of countless <strong><em>Heliostats</em></strong>,<br>intricate mirrored panes built to command the light of the sun.' },
-          { html: 'It starved the day.<br>And fed the night.' },
-          { html: 'The sun, as it was, would never be seen again.' },
-          { html: 'The Array gathered humanity into the <strong><em>Twilights</em></strong>:<br>bleak habitations of engineered light.<br>Small, overpopulated, carefully selected cities,<br>meticulously engineered,<br>meticulously controlled.' },
-          { html: 'The last stand of humanity.<br><br>Outside the Twilights, the old world remained.' },
-          { html: 'They called it the <strong><em>Gloom</em></strong>.' },
+          { html: 'The Earth’s wounds never healed.<br>First came the heat of day.<br>Blistering. Uninhabitable.<br>Then came the cold of night.<br>Rigid. Insurmountable.' },
+          { html: 'So humanity harnessed the sun.<br>They called it the <strong><em>Aegis Array</em></strong>:<br>an astronomical structure orbiting the Earth,<br>composed of countless <strong><em>Heliostats</em></strong>,<br>mirrored panes built to command the light.' },
+          { html: 'It starved the day.<br>And fed the night.<br>The sun, as it was,<br>would never be seen again.' },
+          { html: 'The Array gathered humanity into the <strong><em>Twilights</em></strong>:<br>bleak habitations of engineered light.<br>Small.<br>Overpopulated.<br>Meticulously controlled.<br>The last stand of humanity.' },
+          { html: 'Outside the Twilights,<br>the old world remained.<br>They called it the <strong><em>Gloom</em></strong>.' },
           { html: 'A world left to blister and freeze.<br>But the Gloom still held what could not be replaced.<br><strong><em>Relics</em></strong> of the past:<br>machinery,<br>medicine,<br>memory.' },
-          { html: 'That made light the first principle of power.<br>And all power converged on the Array.<br>From that power, the <strong><em>Spectres</em></strong> emerged:<br>crews that lived between the Twilights and the Gloom.<br>They brokered light.<br>And hunted what humanity could no longer build.<br>The chance of survival was low.<br>But the bounties on Relics were high.<br>Many died in the Gloom.' },
-          { html: 'So the Spectres answered with <strong>Heliometric Routing Nodes</strong>:<br>a field network of prisms, splitters, and lenses.<br>They siphoned light from the Array<br>and cast temporary routes into the dark,<br>through the broken corridors of abandoned cities.' },
-          { html: 'But the Spectres no longer place the Nodes themselves.' },
-          { html: 'They send machines ahead of them.<br>Specialized Mechs,<br>built to enter the Gloom,<br>place the Nodes,<br>and shape light and shadow.' },
+          { html: 'That made light the first principle of power.<br>And all power converged on the Array.' },
+          { html: 'From that power,<br>the <strong><em>Spectres</em></strong> emerged:<br>crews that lived between the Twilights and the Gloom.<br>They brokered light.<br>They hunted what humanity could no longer build.' },
+          { html: 'The chance of survival was low.<br>The bounties on Relics were high.<br>Many died in the Gloom.' },
+          { html: 'So the Spectres answered with <strong><em>Heliometric Routing Nodes</em></strong>:<br>a field network of prisms,<br>splitters,<br>and lenses.' },
+          { html: 'They siphoned light from the Array<br>and cast temporary routes into the dark,<br>through the broken corridors<br>of abandoned cities.' },
+          { html: 'But the Spectres no longer place the Nodes themselves.<br>They send machines ahead of them.' },
+          { html: 'Specialized <strong><em>Mechs</em></strong>,<br>built to enter the Gloom,<br>place the Nodes,<br>and shape light and shadow.' },
           { html: 'Born of necessity.<br>Forged from the failures of the dead.<br>Paid for in the blood of fallen Spectres.' },
           { html: 'The <strong>Gloom Routers</strong>.' }
         ];
