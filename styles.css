@@ -33,9 +33,12 @@ body {
   overflow: hidden;
   padding: 1.25rem;
   background:
-    radial-gradient(circle at 50% 20%, rgba(245, 166, 35, 0.13), transparent 26rem),
-    radial-gradient(circle at 18% 82%, rgba(75, 199, 217, 0.14), transparent 24rem),
-    linear-gradient(180deg, #020307 0%, #05070d 50%, #000 100%);
+    linear-gradient(180deg, rgba(2, 3, 4, 0.46), #020304 94%),
+    linear-gradient(90deg, rgba(2, 3, 4, 0.98), rgba(2, 3, 4, 0.72) 50%, rgba(2, 3, 4, 0.96)),
+    linear-gradient(135deg, rgba(112, 48, 38, 0.12), transparent 32%),
+    linear-gradient(235deg, rgba(70, 132, 139, 0.1), transparent 38%),
+    url("assets/card-assets/pathing/occluded_corridor.png") center / cover no-repeat,
+    #020304;
   opacity: 0;
   transition: opacity 0.5s linear, visibility 0.5s linear;
 }
@@ -59,59 +62,65 @@ body {
 .intro-starfield::before,
 .intro-starfield::after {
   position: absolute;
-  inset: -10%;
+  inset: 0;
   content: "";
-  background-image:
-    radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 1px, transparent 1.4px),
-    radial-gradient(circle, rgba(75, 199, 217, 0.65) 0 1px, transparent 1.5px);
-  background-position: 0 0, 2.5rem 3.5rem;
-  background-size: 5.5rem 5.5rem, 8rem 8rem;
-  opacity: 0.26;
+  pointer-events: none;
+}
+
+.intro-starfield {
+  background:
+    linear-gradient(90deg, rgba(92, 132, 136, 0.07) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(142, 97, 60, 0.055) 1px, transparent 1px);
+  background-size: 6.5rem 6.5rem, 6.5rem 6.5rem;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.82), transparent 88%);
+  opacity: 0.28;
 }
 
 .intro-starfield::before {
-  transform: rotate(11deg) scale(1.15);
-  opacity: 0.22;
+  background:
+    linear-gradient(115deg, transparent 0 34%, rgba(142, 97, 60, 0.14) 34.2% 34.5%, transparent 34.7%),
+    linear-gradient(245deg, transparent 0 60%, rgba(92, 132, 136, 0.12) 60.2% 60.5%, transparent 60.7%);
+  opacity: 0.72;
 }
 
 .intro-starfield::after {
-  background-size: 12rem 12rem, 16rem 16rem;
-  filter: blur(0.5px);
-  opacity: 0.16;
+  border: 1px solid rgba(142, 97, 60, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(92, 132, 136, 0.08), inset 0 0 7rem rgba(0, 0, 0, 0.78);
+  opacity: 0.88;
 }
 
 .intro-lore {
   position: relative;
   z-index: 1;
-  width: min(42rem, 88vw);
-  padding: clamp(1rem, 4vw, 2rem);
-  border-block: 1px solid rgba(245, 166, 35, 0.42);
-  color: #f7e2a3;
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: clamp(1.05rem, 3.6vw, 2rem);
-  font-weight: 700;
-  letter-spacing: 0.045em;
-  line-height: 1.38;
+  width: min(54rem, 90vw);
+  padding: clamp(1.4rem, 4vw, 2.6rem);
+  border-block: 1px solid rgba(176, 139, 83, 0.42);
+  color: #d8d2c4;
+  font-family: Constantia, Cambria, Georgia, "Times New Roman", serif;
+  font-size: clamp(1.55rem, 3vw, 2.55rem);
+  font-weight: 650;
+  letter-spacing: 0;
+  line-height: 1.26;
   text-align: center;
-  text-shadow: 0 0 12px rgba(245, 166, 35, 0.36), 0 2px 0 #000;
+  text-shadow: 0 0 14px rgba(176, 139, 83, 0.2), 0 2px 0 #000;
   opacity: 0;
 }
 
 .intro-lore--final {
-  width: min(52rem, 90vw);
-  font-size: clamp(1.35rem, 5vw, 3rem);
-  line-height: 1.16;
-  letter-spacing: 0.06em;
+  width: min(58rem, 92vw);
+  font-size: clamp(2rem, 4.6vw, 4.2rem);
+  line-height: 1.02;
+  letter-spacing: 0;
 }
 
 .intro-lore::before,
 .intro-lore::after {
   position: absolute;
   left: 50%;
-  width: min(16rem, 42vw);
+  width: min(24rem, 52vw);
   height: 1px;
   content: "";
-  background: linear-gradient(90deg, transparent, rgba(75, 199, 217, 0.92), transparent);
+  background: linear-gradient(90deg, transparent, rgba(176, 139, 83, 0.7), rgba(92, 132, 136, 0.56), transparent);
   transform: translateX(-50%);
 }
 
@@ -119,12 +128,14 @@ body {
 .intro-lore::after { bottom: -0.6rem; }
 
 .intro-lore strong {
-  color: #fff4c6;
+  color: #f0c86f;
+  font-weight: 800;
+  text-shadow: 0 0 12px rgba(176, 120, 48, 0.36), 0 2px 0 #000;
 }
 
 .intro-lore em {
-  color: #9ff4ff;
-  font-style: italic;
+  color: #d9ece9;
+  font-style: normal;
 }
 
 .intro-title {
@@ -255,14 +266,15 @@ footer {
     max-height: 62vh;
   }
   .intro-lore {
-    width: min(30rem, 90vw);
-    font-size: clamp(0.95rem, 4.5vw, 1.35rem);
-    letter-spacing: 0.03em;
+    width: min(34rem, 90vw);
+    font-size: clamp(1.2rem, 5.6vw, 1.75rem);
+    letter-spacing: 0;
+    line-height: 1.22;
   }
   .intro-lore--final {
     width: min(34rem, 92vw);
-    font-size: clamp(1.45rem, 9vw, 2.45rem);
-    line-height: 1.08;
+    font-size: clamp(1.7rem, 9vw, 2.9rem);
+    line-height: 1;
   }
   .intro-skip {
     top: 0.75rem;
