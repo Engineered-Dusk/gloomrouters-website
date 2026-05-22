@@ -1,0 +1,16 @@
+# Local agent/tool scratch space
+.codex-run/
+
+# Local-only reports and audit notes
+*.local.md
+*.local.txt
+privacy-audit*.md
+privacy-cleanup*.md
+
+# Environment/secrets
+.env
+.env.*
+
+# Local logs and dependencies
+*.log
+node_modules/
