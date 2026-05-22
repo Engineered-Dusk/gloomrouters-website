@@ -10,4 +10,6 @@ output except for emergency static deploy fixes.
 Do not commit local reports, temp files, credentials, source maps, private paths,
 or personal data.
 
+Do not copy local reports, RUN_REPORT.md files, audit reports, temp clone notes, or private runbooks into this public repo.
+
 Keep changes narrow and public-safe.
