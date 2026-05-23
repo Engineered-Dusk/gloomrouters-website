@@ -13,3 +13,8 @@ or personal data.
 Do not copy local reports, RUN_REPORT.md files, audit reports, temp clone notes, or private runbooks into this public repo.
 
 Keep changes narrow and public-safe.
+
+For public-facing website changes, ask whether a brief, high-level entry should
+be added to `/development-log/`. Development Log entries must stay public-safe:
+no sensitive details, credentials, private paths, internal reports, local notes,
+or implementation specifics that visitors do not need.
